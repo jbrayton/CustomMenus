@@ -11,8 +11,6 @@
 		256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */; };
 		2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BD14C3F12D64C0100C2A872 /* ReadMe.txt */; };
 		8724A6AD11AF3CE90057E785 /* SuggestionsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SuggestionsWindow.swift */; };
-		873492CD11B055EC007159B7 /* imagePickerMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 873492CC11B055EC007159B7 /* imagePickerMenuItem.xib */; };
-		873570BB11A60F50006364B2 /* ImagePickerMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873570BA11A60F50006364B2 /* ImagePickerMenuItemView.swift */; };
 		87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */; };
 		87A62A2F11A9FF80003BFB8D /* suggestionprototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A62A2D11A9FF80003BFB8D /* suggestionprototype.xib */; };
 		87A62F6111AB5081003BFB8D /* SuggestibleTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62F6011AB5081003BFB8D /* SuggestibleTextFieldCell.swift */; };
@@ -25,7 +23,6 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2184044E2A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		2184044F2A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/imagePickerMenuItem.xib; sourceTree = "<group>"; };
 		218404502A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/suggestionprototype.xib; sourceTree = "<group>"; };
 		218404512A9FD3D700A7CBF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenusAppDelegate.swift; sourceTree = "<group>"; };
@@ -34,7 +31,6 @@
 		2BD14C3F12D64C0100C2A872 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		532273A015F92B3100F89E73 /* CustomMenus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CustomMenus.entitlements; sourceTree = "<group>"; };
 		8724A6AC11AF3CE90057E785 /* SuggestionsWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsWindow.swift; sourceTree = "<group>"; };
-		873570BA11A60F50006364B2 /* ImagePickerMenuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerMenuItemView.swift; sourceTree = "<group>"; };
 		87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageThumbnailExtensions.swift; sourceTree = "<group>"; };
 		87A62F6011AB5081003BFB8D /* SuggestibleTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestibleTextFieldCell.swift; sourceTree = "<group>"; };
 		87CD530D11A9AD0C00B510D3 /* RoundedCornersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
@@ -110,7 +106,6 @@
 				8D1107310486CEB800E47090 /* CustomMenus-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-				873492CC11B055EC007159B7 /* imagePickerMenuItem.xib */,
 				87A62A2D11A9FF80003BFB8D /* suggestionprototype.xib */,
 			);
 			name = Resources;
@@ -128,7 +123,6 @@
 		873492EA11B06171007159B7 /* MenuItemView */ = {
 			isa = PBXGroup;
 			children = (
-				873570BA11A60F50006364B2 /* ImagePickerMenuItemView.swift */,
 			);
 			name = MenuItemView;
 			sourceTree = "<group>";
@@ -207,7 +201,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				873492CD11B055EC007159B7 /* imagePickerMenuItem.xib in Resources */,
 				87A62A2F11A9FF80003BFB8D /* suggestionprototype.xib in Resources */,
 				2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */,
 			);
@@ -221,7 +214,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */,
-				873570BB11A60F50006364B2 /* ImagePickerMenuItemView.swift in Sources */,
 				87CD530E11A9AD0C00B510D3 /* RoundedCornersView.swift in Sources */,
 				87CD531111A9AE5D00B510D3 /* SuggestionsWindowController.swift in Sources */,
 				87A62F6111AB5081003BFB8D /* SuggestibleTextFieldCell.swift in Sources */,
@@ -247,14 +239,6 @@
 				2184044E2A9FD3D400A7CBF8 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		873492CC11B055EC007159B7 /* imagePickerMenuItem.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2184044F2A9FD3D400A7CBF8 /* Base */,
-			);
-			name = imagePickerMenuItem.xib;
 			sourceTree = "<group>";
 		};
 		87A62A2D11A9FF80003BFB8D /* suggestionprototype.xib */ = {
