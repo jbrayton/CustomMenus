@@ -240,7 +240,7 @@ class SuggestionsWindowController: NSWindowController {
         return trackingArea
     }
 
-    // Creates suggestion views from suggestionprototype.xib for every suggestion and resize the suggestion window accordingly. Also creates a thumbnail image on a backgroung aue.
+    // Creates suggestion views from suggestionprototype.xib for every suggestion and resize the suggestion window accordingly. Also creates a thumbnail image on a background queue.
     private func layoutSuggestions() {
         let window: NSWindow? = self.window
         let contentView = window?.contentView as? RoundedCornersView
