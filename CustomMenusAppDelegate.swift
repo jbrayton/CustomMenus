@@ -40,6 +40,7 @@
  Copyright (C) 2012 Apple Inc. All Rights Reserved.
  */
 import Cocoa
+import UniformTypeIdentifiers
 
 let kDesktopPicturesPath = "/System/Library/Desktop Pictures"
 
@@ -105,7 +106,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
                 var fileType: String? = nil
                 // Is the file an image file? Use UTTypes to find out.
                 try? fileType = ((file.resourceValues(forKeys: [.typeIdentifierKey]).allValues.first?.value ?? "") as? String)
-                if fileType != nil && UTTypeConformsTo(fileType! as NSString, kUTTypeImage) {
+                if let fileType, UTType(fileType)?.conforms(to: UTType.image) == true {
                     if idx == 0 {
                         // Starting a new set of 4 images. Setup a new menu item and URL array
                         imageUrlArray = [URL]()
@@ -225,7 +226,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
                 if isDirectory != nil && isDirectory! == 0 {
                     var fileType: String? = nil
                     try? fileType = ((file.resourceValues(forKeys: [.typeIdentifierKey]).allValues.first?.value ?? "") as? String)
-                    if fileType != nil && UTTypeConformsTo(fileType! as NSString, kUTTypeImage) {
+                    if let fileType, UTType(fileType)?.conforms(to: UTType.image) == true {
                         imageURLS.append(file)
                     }
                 }
