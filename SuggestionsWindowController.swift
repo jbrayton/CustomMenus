@@ -80,10 +80,17 @@ class SuggestionsWindowController: NSWindowController {
      */
     private var selectedView: NSView? {
         didSet {
-            if selectedView != oldValue {
-                (oldValue as? HighlightingView)?.setHighlighted(false)
+            
+            if let oldValue = oldValue as? NSVisualEffectView {
+                oldValue.material = .menu
+                oldValue.isEmphasized = false
+                oldValue.state = .inactive
             }
-            (selectedView as? HighlightingView)?.setHighlighted(true)
+            if let newValue = self.selectedView as? NSVisualEffectView {
+                newValue.material = .selection
+                newValue.isEmphasized = true
+                newValue.state = .active
+            }
         }
     }
 
@@ -260,7 +267,7 @@ class SuggestionsWindowController: NSWindowController {
         for entry: [String: Any] in suggestions {
             frame.origin.y += frame.size.height
             let viewController = NSViewController(nibName: NSNib.Name("suggestionprototype"), bundle: nil)
-            let view = viewController.view as? HighlightingView
+            let view = viewController.view as? NSVisualEffectView
             // Make the selectedView the samee as the 0th.
             if viewControllers.count == 0 {
                 selectedView = view

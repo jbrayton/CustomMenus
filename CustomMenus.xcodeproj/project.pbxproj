@@ -15,7 +15,6 @@
 		873570BB11A60F50006364B2 /* ImagePickerMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873570BA11A60F50006364B2 /* ImagePickerMenuItemView.swift */; };
 		87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */; };
 		87A62A2F11A9FF80003BFB8D /* suggestionprototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A62A2D11A9FF80003BFB8D /* suggestionprototype.xib */; };
-		87A62DF811AA4E74003BFB8D /* HighlightingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62DF711AA4E74003BFB8D /* HighlightingView.swift */; };
 		87A62F6111AB5081003BFB8D /* SuggestibleTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62F6011AB5081003BFB8D /* SuggestibleTextFieldCell.swift */; };
 		87CD530E11A9AD0C00B510D3 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD530D11A9AD0C00B510D3 /* RoundedCornersView.swift */; };
 		87CD531111A9AE5D00B510D3 /* SuggestionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD531011A9AE5D00B510D3 /* SuggestionsWindowController.swift */; };
@@ -37,7 +36,6 @@
 		873570BA11A60F50006364B2 /* ImagePickerMenuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerMenuItemView.swift; sourceTree = "<group>"; };
 		87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageThumbnailExtensions.swift; sourceTree = "<group>"; };
 		87A62A2E11A9FF80003BFB8D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/suggestionprototype.xib; sourceTree = "<group>"; };
-		87A62DF711AA4E74003BFB8D /* HighlightingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightingView.swift; sourceTree = "<group>"; };
 		87A62F6011AB5081003BFB8D /* SuggestibleTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestibleTextFieldCell.swift; sourceTree = "<group>"; };
 		87CD530D11A9AD0C00B510D3 /* RoundedCornersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
 		87CD531011A9AE5D00B510D3 /* SuggestionsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsWindowController.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 				87CD531011A9AE5D00B510D3 /* SuggestionsWindowController.swift */,
 				87CD530D11A9AD0C00B510D3 /* RoundedCornersView.swift */,
 				8724A6AC11AF3CE90057E785 /* SuggestionsWindow.swift */,
-				87A62DF711AA4E74003BFB8D /* HighlightingView.swift */,
 				87A62F6011AB5081003BFB8D /* SuggestibleTextFieldCell.swift */,
 			);
 			name = "Suggestions Popup";
@@ -225,7 +222,6 @@
 				873570BB11A60F50006364B2 /* ImagePickerMenuItemView.swift in Sources */,
 				87CD530E11A9AD0C00B510D3 /* RoundedCornersView.swift in Sources */,
 				87CD531111A9AE5D00B510D3 /* SuggestionsWindowController.swift in Sources */,
-				87A62DF811AA4E74003BFB8D /* HighlightingView.swift in Sources */,
 				87A62F6111AB5081003BFB8D /* SuggestibleTextFieldCell.swift in Sources */,
 				87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */,
 				8724A6AD11AF3CE90057E785 /* SuggestionsWindow.swift in Sources */,
