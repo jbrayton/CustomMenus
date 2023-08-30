@@ -44,21 +44,21 @@ import Cocoa
 let kDesktopPicturesPath = "/System/Library/Desktop Pictures"
 
 @NSApplicationMain
-class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
+class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
     @IBOutlet var imagePicker: NSPopUpButton!
     @IBOutlet var imageView: NSImageView!
     @IBOutlet var searchField: NSTextField!
-
+    
     private var suggestionsController: SuggestionsWindowController?
     private var baseURL: URL?
     private var imageURLS = [URL]()
     private var suggestedURL: URL?
-
+    
     /* Declare the skipNextSuggestion property in an anonymous category since it is a private property. See -controlTextDidChange: and -control:textView:doCommandBySelector: in this file for usage.
      */
     private var skipNextSuggestion = false
-
+    
     /* The popup menu allows selection from image files contained in the directory set here. The suggestion list recursively searches all the sub directories for matching image names starting at the directory set here.
      */
     func setBaseURL(_ url: URL?) {
@@ -67,14 +67,14 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
             imageURLS = []
         }
     }
-
+    
     /* Start off by pointing to Desktop Pictures.
      */
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setBaseURL(URL(fileURLWithPath: kDesktopPicturesPath))
         setupImagesMenu()
     }
-
+    
     // MARK: -
     // MARK: Custom Menu Item View
     /* Set up the custom views in the popup button menu. This method should be called whenever the baseURL changes.
@@ -113,7 +113,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
                         // Duplicate the prototype menu item
                         let imagesMenuItem: NSMenuItem? = masterImagesMenuItem
                         // Load the custom view from its nib
-                        let viewController = NSViewController(nibName: NSNib.Name(rawValue: "imagePickerMenuItem"), bundle: nil)
+                        let viewController = NSViewController(nibName: NSNib.Name("imagePickerMenuItem"), bundle: nil)
                         /* Setup a mutable dictionary as the view controller's represeted object so we can bind the custom view to it.
                          */
                         var pickerMenuData = [AnyHashable: Any](minimumCapacity: 2)
@@ -151,7 +151,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
             }
         }
     }
-
+    
     /* This is the action wired to the prototype custom menu item in IB. In -_setupImagesMenu above, we bound the selected URL to a mutable dictionary that was set as the viewController's representedObject. The viewController was set as the menu item's represented object and the sender is the menu item.
      */
     @IBAction func takeImage(from sender: Any) {
@@ -168,7 +168,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
             imageView.image = nil
         }
     }
-
+    
     /* Action method for the "Select Image Folder..." menu item on the popup button. Show Open panel to allow use to select the _baseURL to search for images.
      */
     @IBAction func selectImageFolder(_ sender: Any) {
@@ -183,10 +183,10 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
             }
         })
     }
-
+    
     // MARK: -
     // MARK: Suggestions
-
+    
     /* This method is invoked when the user presses return (or enter) on the search text field. We don't want to use the text from the search field as it is just the image filename without a path. Also, it may not be valid. Instead, use this user action to trigger setting the large image view in the main window to the currently suggested URL, if there is one.
      */
     @IBAction func takeImage(fromSuggestedURL sender: Any) {
@@ -196,7 +196,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
         }
         imageView.image = image
     }
-
+    
     /* This is the action method for when the user changes the suggestion selection. Note, this action is called continuously as the suggestion selection changes while being tracked and does not denote user committal of the suggestion. For suggestion committal, the text field's action method is used (see above). This method is wired up programatically in the -controlTextDidBeginEditing: method below.
      */
     @IBAction func update(withSelectedSuggestion sender: Any) {
@@ -209,7 +209,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
             }
         }
     }
-
+    
     /* Recursively search through all the image files starting at the _baseURL for image file names that begin with the supplied string. It returns an array of NSDictionaries. Each dictionary contains a label, detailed label and an url with keys that match the binding used by each custom suggestion view defined in suggestionprototype.xib.
      */
     func suggestions(forText text: String?) -> [[String: Any]]? {
@@ -253,7 +253,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
         }
         return suggestions
     }
-
+    
     /* Update the field editor with a suggested string. The additional suggested characters are auto selected.
      */
     private func updateFieldEditor(_ fieldEditor: NSText?, withSuggestion suggestion: String?) {
@@ -261,7 +261,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
         fieldEditor?.string = suggestion ?? ""
         fieldEditor?.selectedRange = selection
     }
-
+    
     /* Determines the current list of suggestions, display the suggestions and update the field editor.
      */
     func updateSuggestions(from control: NSControl?) {
@@ -287,10 +287,14 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
             }
         }
     }
+    
+}
 
+extension CustomMenusAppDelegate : NSTextFieldDelegate {
+    
     /* In interface builder, we set this class object as the delegate for the search text field. When the user starts editing the text field, this method is called. This is an opportune time to display the initial suggestions.
      */
-    override func controlTextDidBeginEditing(_ notification: Notification?) {
+    func controlTextDidBeginEditing(_ notification: Notification) {
         if !skipNextSuggestion {
             // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
             if suggestionsController == nil {
@@ -298,15 +302,15 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
                 suggestionsController?.target = self
                 suggestionsController?.action = #selector(CustomMenusAppDelegate.update(withSelectedSuggestion:))
             }
-            updateSuggestions(from: notification?.object as? NSControl)
+            updateSuggestions(from: notification.object as? NSControl)
         }
     }
 
     /* The field editor's text may have changed for a number of reasons. Generally, we should update the suggestions window with the new suggestions. However, in some cases (the user deletes characters) we cancel the suggestions window.
      */
-    override func controlTextDidChange(_ notification: Notification?) {
+    func controlTextDidChange(_ notification: Notification) {
         if !skipNextSuggestion {
-            updateSuggestions(from: notification?.object as? NSControl)
+            updateSuggestions(from: notification.object as? NSControl)
         } else {
             // If we are skipping this suggestion, the set the _suggestedURL to nil and cancel the suggestions window.
             suggestedURL = nil
@@ -319,7 +323,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
 
     /* The field editor has ended editing the text. This is not the same as the action from the NSTextField. In the MainMenu.xib, the search text field is setup to only send its action on return / enter. If the user tabs to or clicks on another control, text editing will end and this method is called. We don't consider this committal of the action. Instead, we realy on the text field's action (see -takeImageFromSuggestedURL: above) to commit the suggestion. However, since the action may not occur, we need to cancel the suggestions window here.
      */
-    override func controlTextDidEndEditing(_ obj: Notification?) {
+    func controlTextDidEndEditing(_ obj: Notification) {
         /* If the suggestionController is already in a cancelled state, this call does nothing and is therefore always safe to call.
          */
         suggestionsController?.cancelSuggestions()
@@ -361,4 +365,5 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelega
         // This is a command that we don't specifically handle, let the field editor do the appropriate thing.
         return false
     }
+    
 }

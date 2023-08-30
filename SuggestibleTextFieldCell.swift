@@ -65,11 +65,11 @@ class SuggestibleTextFieldCell: NSTextFieldCell {
 
     /* The search text field in the MainMenu.xib has the class for its cell set to this class so that it will report the suggestions window as one of its accessibility children when the suggestions window is present.
      */
-    override func accessibilityAttributeValue(_ attribute: NSAccessibilityAttributeName) -> Any? {
+    override func accessibilityAttributeValue(_ attribute: NSAccessibility.Attribute) -> Any? {
         if attribute == .children,
             let parentWindow = suggestionsWindow,
             let children = super.accessibilityAttributeValue(.children) as? [Any],
-            let descendant = NSAccessibilityUnignoredDescendant(parentWindow) {
+           let descendant = NSAccessibility.unignoredDescendant(of: parentWindow) {
             return children + [descendant]
         } else {
             return super.accessibilityAttributeValue(attribute)

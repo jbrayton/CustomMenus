@@ -133,10 +133,10 @@ class ImagePickerMenuItemView: NSView {
                 let imageView = imageViews[index]
                 let imageUrl = imageUrls[index]
                 let spinner = spinners[index]
-                ITESharedOperationQueue()?.addOperation({(_: Void) -> Void in
+                ITESharedOperationQueue()?.addOperation({
                     let thumbnailImage = NSImage.iteThumbnailImage(withContentsOf: imageUrl, width: imageView.bounds.width)
                     // Thumbnail generation is complete. Now we need to stop the associated animated spinner, hide it, and set the image view to the thumbnail image. Note: we need to do this on the main thread. This is easily done by adding a block to the main NSOperationQueue
-                    OperationQueue.main.addOperation({(_: Void) -> Void in
+                    OperationQueue.main.addOperation({
                         spinner.stopAnimation(nil)
                         spinner.isHidden = true
                         imageView.image = thumbnailImage as? NSImage
