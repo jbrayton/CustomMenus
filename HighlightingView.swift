@@ -46,12 +46,13 @@ class HighlightingView: NSView {
 
     // Draw with or without a highlight style
     override func draw(_ dirtyRect: NSRect) {
+        let rect = NSIntersectionRect(dirtyRect, self.bounds)
         if isHighlighted {
             NSColor.alternateSelectedControlColor.set()
-            __NSRectFillUsingOperation(dirtyRect, .sourceOver)
+            __NSRectFillUsingOperation(rect, .sourceOver)
         } else {
             NSColor.clear.set()
-            __NSRectFillUsingOperation(dirtyRect, .sourceOver)
+            __NSRectFillUsingOperation(rect, .sourceOver)
         }
     }
     /* Custom highlighted property setter because when the property changes we need to redraw and update the containing text fields.
