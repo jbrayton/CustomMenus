@@ -41,7 +41,7 @@
  */
 import Cocoa
 
-let kDesktopPicturesPath = "/Library/Desktop Pictures"
+let kDesktopPicturesPath = "/System/Library/Desktop Pictures"
 
 @NSApplicationMain
 class CustomMenusAppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
