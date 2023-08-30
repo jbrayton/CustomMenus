@@ -178,7 +178,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
         openPanel.canChooseDirectories = true
         openPanel.directoryURL = URL(fileURLWithPath: kDesktopPicturesPath)
         openPanel.beginSheetModal(for: window, completionHandler: {(_ result: NSApplication.ModalResponse) -> Void in
-            if result.rawValue == NSFileHandlingPanelOKButton {
+            if result == NSApplication.ModalResponse.OK {
                 self.setBaseURL(openPanel.url)
                 self.setupImagesMenu()
             }
