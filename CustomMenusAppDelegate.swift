@@ -47,7 +47,6 @@ let kDesktopPicturesPath = "/System/Library/Desktop Pictures"
 @NSApplicationMain
 class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var window: NSWindow!
-    @IBOutlet var imagePicker: NSPopUpButton!
     @IBOutlet var imageView: NSImageView!
     @IBOutlet var searchField: NSTextField!
     
@@ -73,116 +72,6 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
      */
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setBaseURL(URL(fileURLWithPath: kDesktopPicturesPath))
-        setupImagesMenu()
-    }
-    
-    // MARK: -
-    // MARK: Custom Menu Item View
-    /* Set up the custom views in the popup button menu. This method should be called whenever the baseURL changes.
-     In MainMenu.xib, the menu for the popup button is defined. There is one menu item with a tag of 1000 that is used as the prototype for the custom menu items. Each ImagePickerMenuItemView can contain 4 images. So we keep duplicating the prototype menu item until we have enough menu items for each image found in the directory specified by _baseURL. Duplicating the prototype menu allows us to reuse the target action wiring done in IB.
-     We need to rebuild this menu each time the _baseURL changes. To accomplish this, we set the tag of each dupicated prototype to 1001. This way we can easily find and remove them to start over.
-     */
-    private func setupImagesMenu() {
-        let menu: NSMenu? = imagePicker.menu
-        // Look for existing ImagePickerMenuItemView menu items that are no longer valid and remove them.
-        while let menuItem = menu?.item(withTag: 1001) {
-            menu?.removeItem(menuItem)
-        }
-        // Find the prototype menu item. We want to keep it as the prototype for future rebuilds so we don't want to actually use it. Instead, make it hidden so the user never sees it.
-        let masterImagesMenuItem: NSMenuItem? = imagePicker.menu?.item(withTag: 1000)
-        masterImagesMenuItem?.isHidden = true
-        // Find all the entires in the _baseURL directory.
-        let fileURLS = try? FileManager.default.contentsOfDirectory(at: baseURL!, includingPropertiesForKeys: [.isDirectoryKey, .typeIdentifierKey], options: [])
-        // Only 4 images per menu item are allowed by the view. Use this index to keep track of that
-        var idx: Int = 0
-        // ImagePickerMenuItemView uses an array of URLS. This is that array.
-        var imageUrlArray = [URL]()
-        // Loop over each entry looking for image files
-        for file: URL in (fileURLS ?? []) {
-            var isDirectory: NSNumber? = nil
-            // directories are obviously not images.
-            try? isDirectory = ((file.resourceValues(forKeys: [.isDirectoryKey]).allValues.first?.value ?? "") as? NSNumber)
-            if isDirectory != nil && isDirectory! == 0 {
-                var fileType: String? = nil
-                // Is the file an image file? Use UTTypes to find out.
-                try? fileType = ((file.resourceValues(forKeys: [.typeIdentifierKey]).allValues.first?.value ?? "") as? String)
-                if let fileType, UTType(fileType)?.conforms(to: UTType.image) == true {
-                    if idx == 0 {
-                        // Starting a new set of 4 images. Setup a new menu item and URL array
-                        imageUrlArray = [URL]()
-                        imageUrlArray.reserveCapacity(4)
-                        // Duplicate the prototype menu item
-                        let imagesMenuItem: NSMenuItem? = masterImagesMenuItem
-                        // Load the custom view from its nib
-                        let viewController = NSViewController(nibName: NSNib.Name("imagePickerMenuItem"), bundle: nil)
-                        /* Setup a mutable dictionary as the view controller's represeted object so we can bind the custom view to it.
-                         */
-                        var pickerMenuData = [AnyHashable: Any](minimumCapacity: 2)
-                        pickerMenuData["imageUrls"] = imageUrlArray
-                        pickerMenuData["selectedUrl"] = nil
-                        // need a blank entry to start with
-                        viewController.representedObject = pickerMenuData
-                        // Bind the custom view to the image URLs array.
-                        viewController.view.bind(NSBindingName("imageUrls"), to: viewController, withKeyPath: "representedObject.imageUrls", options: nil)
-                        /* selectedImageUrl from the view is read only, so bind the data dictinary to the selectedImageUrl instead of the other way around.
-                         */
-                        (viewController.representedObject as AnyObject).bind(NSBindingName("selectedUrl"), to: viewController.view, withKeyPath: "selectedImageUrl", options: nil)
-                        // transform the duplicated menu item prototype to a proper custom instance
-                        imagesMenuItem?.representedObject = viewController
-                        imagesMenuItem?.view = viewController.view
-                        imagesMenuItem?.tag = 1001
-                        // set the tag to 1001 so we can remove this instance on rebuild (see above)
-                        imagesMenuItem?.isHidden = false
-                        // Insert the custom menu item
-                        if let anItem = imagesMenuItem {
-                            menu?.insertItem(anItem, at: (menu?.numberOfItems)! - 2)
-                        }
-                        // Cleanup memory
-                    }
-                    /* Add the image URL to the mutable array stored in the view controller's representedObject dictionary. Since imageUrlArray is mutable, we can just modify it in place.
-                     */
-                    imageUrlArray.append(file)
-                    // Update our index. We can only put 4 images per custom menu item. Reset after every fourth image file.
-                    idx += 1
-                    if idx > 3 {
-                        idx = 0
-                    }
-                    // with a 0 based index, when idx > 3 we'll have completed 4 passes.
-                }
-            }
-        }
-    }
-    
-    /* This is the action wired to the prototype custom menu item in IB. In -_setupImagesMenu above, we bound the selected URL to a mutable dictionary that was set as the viewController's representedObject. The viewController was set as the menu item's represented object and the sender is the menu item.
-     */
-    @IBAction func takeImage(from sender: Any) {
-        let viewController = (sender as AnyObject).representedObject as? NSViewController
-        let menuItemData = viewController?.representedObject as? [AnyHashable: Any]
-        let imageURL = menuItemData?["selectedUrl"]
-        if imageURL != nil {
-            var image: NSImage? = nil
-            if let anURL = imageURL as? URL {
-                image = NSImage(contentsOf: anURL)
-            }
-            imageView.image = image
-        } else {
-            imageView.image = nil
-        }
-    }
-    
-    /* Action method for the "Select Image Folder..." menu item on the popup button. Show Open panel to allow use to select the _baseURL to search for images.
-     */
-    @IBAction func selectImageFolder(_ sender: Any) {
-        let openPanel = NSOpenPanel()
-        openPanel.canChooseFiles = false
-        openPanel.canChooseDirectories = true
-        openPanel.directoryURL = URL(fileURLWithPath: kDesktopPicturesPath)
-        openPanel.beginSheetModal(for: window, completionHandler: {(_ result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                self.setBaseURL(openPanel.url)
-                self.setupImagesMenu()
-            }
-        })
     }
     
     // MARK: -
