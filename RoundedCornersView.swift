@@ -75,74 +75,30 @@ class RoundedCornersView: NSView {
         return false
     }
 
-    /* The suggestions will be an AXList of suggestions.  AXList requires additional attributes beyond what NSView provides.
-     */
-    override func accessibilityAttributeNames() -> [NSAccessibility.Attribute] {
-        var attributeNames = super.accessibilityAttributeNames()
-        attributeNames.append(.orientation)
-        attributeNames.append(.enabled)
-        attributeNames.append(.visibleChildren)
-        attributeNames.append(.selectedChildren)
-        return attributeNames
+    override func accessibilityOrientation() -> NSAccessibilityOrientation {
+        return .vertical
     }
-
-    /* Return a different value for the role attribute, and the values for the additional attributes declared above.
-     */
-    override func accessibilityAttributeValue(_ attribute: NSAccessibility.Attribute) -> Any? {
-        // Report our role as AXList
-        if attribute == .role {
-            return NSAccessibility.Role.list
-            // Our orientation is vertical
-        } else if attribute == .orientation {
-            return NSAccessibilityOrientation.vertical
-            // The list is always enabled
-        } else if attribute == .enabled {
-            return 1
-            // There is no scroll bar in this example - all children are always visible
-        } else if attribute == .visibleChildren {
-            return accessibilityAttributeValue(.children)
-            // Run through children, and if they respond to 'isHighlighted' put them in the list
-        } else if attribute == .selectedChildren {
-            var selectedChildren = [AnyHashable]()
-            if let accessibilityChildren = NSObject.accessibilityAttributeValue(.children) as? [Any] {
-                for element: Any in accessibilityChildren {
-                    if let control = element as? NSControl {
-                        if control.isHighlighted {
-                            selectedChildren.append(control)
-                        }
+    
+    override func isAccessibilityEnabled() -> Bool {
+        return true
+    }
+    
+    override func accessibilityVisibleChildren() -> [Any]? {
+        return self.accessibilityChildren()
+    }
+    
+    override func accessibilitySelectedChildren() -> [Any]? {
+        var selectedChildren = [AnyHashable]()
+        if let accessibilityChildren = self.accessibilityChildren() {
+            for element: Any in accessibilityChildren {
+                if let control = element as? NSControl {
+                    if control.isHighlighted {
+                        selectedChildren.append(control)
                     }
                 }
             }
-            return selectedChildren
-            // Otherwise, return what super returns
-        } else {
-            return super.accessibilityAttributeValue(attribute)
         }
+        return selectedChildren
     }
 
-    /* In addition to reporting the value for an attribute, we need to return whether value of the attribute can be set.
-     */
-    override func accessibilityIsAttributeSettable(_ attribute: NSAccessibility.Attribute) -> Bool {
-        // Three of the four attributes we added are not settable
-        if attribute == .orientation || attribute == .enabled || attribute == .visibleChildren || attribute == .selectedChildren {
-            return false
-        } else if attribute == .selectedChildren {
-            return true
-            // Otherwise, return what super returns
-        } else {
-            return super.accessibilityIsAttributeSettable(attribute)
-        }
-    }
-
-    override func accessibilitySetValue(_ value: Any?, forAttribute attribute: NSAccessibility.Attribute) {
-        if attribute == .selectedChildren {
-            let windowController: NSWindowController? = window?.windowController
-            if windowController != nil {
-                // Our subclass of NSWindowController has a selectedView property
-                windowController?.setValue(value, forKey: "selectedView")
-            }
-        } else {
-            super.accessibilitySetValue(value, forAttribute: attribute)
-        }
-    }
 }

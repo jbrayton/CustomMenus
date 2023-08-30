@@ -77,13 +77,8 @@ class SuggestionsWindow: NSWindow {
         return true
     }
 
-    /* If we are asked for our AXParent, return the unignored anscestor of our parent element
-     */
-    override func accessibilityAttributeValue(_ attribute: NSAccessibility.Attribute) -> Any? {
-        if attribute == .parent {
-            return (parentElement != nil) ? NSAccessibility.unignoredAncestor(of: parentElement!): nil
-        } else {
-            return super.accessibilityAttributeValue(attribute)
-        }
+    override func accessibilityParent() -> Any? {
+        return (parentElement != nil) ? NSAccessibility.unignoredAncestor(of: parentElement!): nil
     }
+    
 }

@@ -76,12 +76,8 @@ class HighlightingView: NSView {
         return false
     }
 
-    // When asked for the value of our role attribute, return the group role.  For other attributes, use the inherited behavior of NSView.
-    override func accessibilityAttributeValue(_ attribute: NSAccessibility.Attribute) -> Any? {
-        if attribute == .role {
-            return NSAccessibility.Role.group
-        } else {
-            return super.accessibilityAttributeValue(attribute)
-        }
+    override func accessibilityRole() -> NSAccessibility.Role? {
+        return .group
     }
+    
 }
