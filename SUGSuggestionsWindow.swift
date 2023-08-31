@@ -47,7 +47,7 @@
  */
 import Cocoa
 
-class SuggestionsWindow: NSWindow {
+class SUGSuggestionsWindow: NSWindow {
     var parentElement: Any?
 
     /* Convience initializer that removes the syleMask and backing parameters since they are static values for this class.

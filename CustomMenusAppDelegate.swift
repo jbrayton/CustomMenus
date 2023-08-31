@@ -50,7 +50,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var imageView: NSImageView!
     @IBOutlet var searchField: NSTextField!
     
-    private var suggestionsController: SuggestionsWindowController?
+    private var suggestionsController: SUGSuggestionsWindowController?
     private var baseURL: URL?
     private var imageURLS = [URL]()
     private var suggestedURL: URL?
@@ -90,7 +90,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
     /* This is the action method for when the user changes the suggestion selection. Note, this action is called continuously as the suggestion selection changes while being tracked and does not denote user committal of the suggestion. For suggestion committal, the text field's action method is used (see above). This method is wired up programatically in the -controlTextDidBeginEditing: method below.
      */
     @IBAction func update(withSelectedSuggestion sender: Any) {
-        let entry = (sender as? SuggestionsWindowController)?.selectedSuggestion()
+        let entry = (sender as? SUGSuggestionsWindowController)?.selectedSuggestion()
         if entry != nil && !entry!.isEmpty {
             let fieldEditor: NSText? = window.fieldEditor(false, for: searchField)
             if fieldEditor != nil {
@@ -188,7 +188,7 @@ extension CustomMenusAppDelegate : NSTextFieldDelegate {
         if !skipNextSuggestion {
             // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
             if suggestionsController == nil {
-                suggestionsController = SuggestionsWindowController()
+                suggestionsController = SUGSuggestionsWindowController()
                 suggestionsController?.target = self
                 suggestionsController?.action = #selector(CustomMenusAppDelegate.update(withSelectedSuggestion:))
             }

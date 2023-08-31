@@ -41,7 +41,7 @@
  */
 import Cocoa
 
-class RoundedCornersView: NSView {
+class SUGSuggestionsContentView: NSView {
     
     let cornerRadius: CGFloat = 10.0
 

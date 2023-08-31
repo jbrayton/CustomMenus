@@ -49,7 +49,7 @@ let kSuggestionImageURL = "imageUrl"
 let kSuggestionLabel = "label"
 let kSuggestionDetailedLabel = "detailedLabel"
 
-class SuggestionsWindowController: NSWindowController {
+class SUGSuggestionsWindowController: NSWindowController {
     var action: Selector?
     var target: Any?
     private var parentTextField: NSTextField?
@@ -62,11 +62,11 @@ class SuggestionsWindowController: NSWindowController {
 
     init() {
         let contentRec = NSRect(x: 0, y: 0, width: 20, height: 20)
-        let window = SuggestionsWindow(contentRect: contentRec, defer: true)
+        let window = SUGSuggestionsWindow(contentRect: contentRec, defer: true)
         super.init(window: window)
 
         // SuggestionsWindow is a transparent window, create RoundedCornersView and set it as the content view to draw a menu like window.
-        let contentView = RoundedCornersView(frame: contentRec)
+        let contentView = SUGSuggestionsContentView(frame: contentRec)
         window.contentView = contentView
         contentView.autoresizesSubviews = false
         needsLayoutUpdate = true
@@ -138,8 +138,8 @@ class SuggestionsWindowController: NSWindowController {
         // Note that views (controls especially) are often ignored, so we want the unignored descendant - usually a cell
         // Finally, post that we have created the unignored decendant of the suggestions window
         let unignoredAccessibilityDescendant = NSAccessibility.unignoredDescendant(of: parentTextField!)
-        (suggestionWindow as? SuggestionsWindow)?.parentElement = unignoredAccessibilityDescendant
-        (unignoredAccessibilityDescendant as? SuggestibleTextFieldCell)?.suggestionsWindow = suggestionWindow
+        (suggestionWindow as? SUGSuggestionsWindow)?.parentElement = unignoredAccessibilityDescendant
+        (unignoredAccessibilityDescendant as? SUGSearchFieldCell)?.suggestionsWindow = suggestionWindow
         if let win = suggestionWindow, let winD = NSAccessibility.unignoredDescendant(of: win) {
             NSAccessibility.post(element: winD, notification: .created)
         }
@@ -189,8 +189,8 @@ class SuggestionsWindowController: NSWindowController {
             }
             suggestionWindow?.orderOut(nil)
             // Disconnect the accessibility parent/child relationship
-            ((suggestionWindow as? SuggestionsWindow)?.parentElement as? SuggestibleTextFieldCell)?.suggestionsWindow = nil
-            (suggestionWindow as? SuggestionsWindow)?.parentElement = nil
+            ((suggestionWindow as? SUGSuggestionsWindow)?.parentElement as? SUGSearchFieldCell)?.suggestionsWindow = nil
+            (suggestionWindow as? SUGSuggestionsWindow)?.parentElement = nil
         }
         // dismantle any observers for auto cancel
         if lostFocusObserver != nil {
@@ -253,7 +253,7 @@ class SuggestionsWindowController: NSWindowController {
     // Creates suggestion views from suggestionprototype.xib for every suggestion and resize the suggestion window accordingly. Also creates a thumbnail image on a background queue.
     private func layoutSuggestions() {
         let window: NSWindow? = self.window
-        let contentView = window?.contentView as? RoundedCornersView
+        let contentView = window?.contentView as? SUGSuggestionsContentView
         // Remove any existing suggestion view and associated tracking area and set the selection to nil
         selectedView = nil
         for viewController in viewControllers {
