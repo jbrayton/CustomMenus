@@ -15,7 +15,6 @@
 		256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */; };
 		2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BD14C3F12D64C0100C2A872 /* ReadMe.txt */; };
 		8724A6AD11AF3CE90057E785 /* SUGSuggestionsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SUGSuggestionsWindow.swift */; };
-		87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */; };
 		87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */; };
 		87CD530E11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD530D11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift */; };
 		87CD531111A9AE5D00B510D3 /* SUGSuggestionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD531011A9AE5D00B510D3 /* SUGSuggestionsWindowController.swift */; };
@@ -37,7 +36,6 @@
 		2BD14C3F12D64C0100C2A872 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		532273A015F92B3100F89E73 /* CustomMenus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CustomMenus.entitlements; sourceTree = "<group>"; };
 		8724A6AC11AF3CE90057E785 /* SUGSuggestionsWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionsWindow.swift; sourceTree = "<group>"; };
-		87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageThumbnailExtensions.swift; sourceTree = "<group>"; };
 		87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSearchFieldCell.swift; sourceTree = "<group>"; };
 		87CD530D11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionsContentView.swift; sourceTree = "<group>"; };
 		87CD531011A9AE5D00B510D3 /* SUGSuggestionsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionsWindowController.swift; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */,
-				87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -219,7 +216,6 @@
 				218404782AA0FC7C00A7CBF8 /* SUGIndividualSuggestionView.swift in Sources */,
 				87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */,
 				2184047A2AA1145000A7CBF8 /* SUGSuggestion.swift in Sources */,
-				87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */,
 				218404762AA0F99A00A7CBF8 /* SUGIndividualSuggestionViewController.swift in Sources */,
 				8724A6AD11AF3CE90057E785 /* SUGSuggestionsWindow.swift in Sources */,
 				218404722AA0ECC800A7CBF8 /* NSImage+SUGMask.swift in Sources */,
