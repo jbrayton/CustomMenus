@@ -237,7 +237,7 @@ class SUGSuggestionsWindowController: NSWindowController {
         }
         trackingAreas.removeAll()
 
-        /* Iterate througn each suggestion creating a view for each entry.
+        /* Iterate through each suggestion creating a view for each entry.
          */
         /* The width of each suggestion view should match the width of the window. The height is determined by the view's height set in IB.
          */
@@ -245,7 +245,7 @@ class SUGSuggestionsWindowController: NSWindowController {
         let itemHeight: CGFloat = 20.0
         let topBottomMargin: CGFloat = 6.0
         var frame = NSRect(x: 0, y: topBottomMargin - itemHeight, width: contentFrame!.width, height: itemHeight)
-        // offset the Y posistion so that the suggetion view does not try to draw past the rounded corners.
+        // Offset the Y posistion so that the suggestion view does not try to draw past the rounded corners.
         for entry in suggestions {
             frame.origin.y += frame.size.height
             let viewController = SUGIndividualSuggestionViewController()

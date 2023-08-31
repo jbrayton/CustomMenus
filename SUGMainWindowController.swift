@@ -6,9 +6,10 @@
 //
 
 import AppKit
-import UniformTypeIdentifiers
 
 class SUGMainWindowController : NSWindowController {
+    
+    let searchSuggestionGenerator = SUGSuggestionGenerator()
     
     /* Declare the skipNextSuggestion property in an anonymous category since it is a private property. See -controlTextDidChange: and -control:textView:doCommandBySelector: in this file for usage.
      */
@@ -16,9 +17,6 @@ class SUGMainWindowController : NSWindowController {
     private var searchField: NSTextField?
 
     private var suggestionsController: SUGSuggestionsWindowController?
-    private var imageURLS = [URL]()
-
-    private let kDesktopPicturesPath = "/System/Library/Desktop Pictures"
 
     override func windowDidLoad() {
         let toolbar = NSToolbar(identifier: "SUGMainWindowController.toolbar")
@@ -38,47 +36,6 @@ class SUGMainWindowController : NSWindowController {
         }
     }
     
-    /* Recursively search through all the image files starting at the baseURL for image file names that begin with the supplied string. It returns an array of SUGSuggestions.
-     */
-    func suggestions(forText text: String?) -> [SUGSuggestion]? {
-        // We don't want to hit the disk every time we need to re-calculate the the suggestion list. So we cache the result from disk. If we really wanted to be fancy, we could listen for changes to the file system at the baseURL to know when the cache is out of date.
-        if imageURLS.count == 0 {
-            imageURLS = [URL]()
-            imageURLS.reserveCapacity(1)
-            let baseURL = URL(filePath: kDesktopPicturesPath)
-            let keyProperties: [URLResourceKey] = [.isDirectoryKey, .typeIdentifierKey, .localizedNameKey]
-            let dirItr: FileManager.DirectoryEnumerator? = FileManager.default.enumerator(at: baseURL, includingPropertiesForKeys: keyProperties, options: [.skipsPackageDescendants, .skipsHiddenFiles], errorHandler: nil)
-            while let file = dirItr?.nextObject() as? URL {
-                var isDirectory: NSNumber? = nil
-                try? isDirectory = ((file.resourceValues(forKeys: [.isDirectoryKey]).allValues.first?.value ?? "") as? NSNumber)
-                if isDirectory != nil && isDirectory! == 0 {
-                    var fileType: String? = nil
-                    try? fileType = ((file.resourceValues(forKeys: [.typeIdentifierKey]).allValues.first?.value ?? "") as? String)
-                    if let fileType, UTType(fileType)?.conforms(to: UTType.image) == true {
-                        imageURLS.append(file)
-                    }
-                }
-            }
-        }
-        // Search the known image URLs array for matches.
-        var suggestions = [SUGSuggestion]()
-        suggestions.reserveCapacity(1)
-        for hashableFile: AnyHashable in imageURLS {
-            guard let file = hashableFile as? URL else {
-                continue
-            }
-            var localizedName: String?
-            try? localizedName = ((file.resourceValues(forKeys: [.localizedNameKey]).allValues.first?.value ?? "") as? String)
-            if text != nil && text != "" && localizedName != nil
-                && (localizedName!.hasPrefix(text ?? "")
-                    || localizedName!.uppercased().hasPrefix(text?.uppercased() ?? "")) {
-                let entry = SUGSuggestion(name: localizedName ?? "", url: file)
-                suggestions.append(entry)
-            }
-        }
-        return suggestions
-    }
-    
     /* Update the field editor with a suggested string. The additional suggested characters are auto selected.
      */
     private func updateFieldEditor(_ fieldEditor: NSText?, withSuggestion suggestion: String?) {
@@ -93,14 +50,17 @@ class SUGMainWindowController : NSWindowController {
         if let fieldEditor = self.window?.fieldEditor(false, for: control) {
             // Only use the text up to the caret position
             let selection: NSRange? = fieldEditor.selectedRange
-            let text = (selection != nil) ? (fieldEditor.string as NSString?)?.substring(to: selection!.location) : nil
-            let suggestions = self.suggestions(forText: text)
-            if suggestions != nil && suggestions!.count > 0 {
+            let searchString = (selection != nil) ? (fieldEditor.string as NSString?)?.substring(to: selection!.location) : nil
+            var suggestions: [SUGSuggestion]? = nil
+            if let searchString, !searchString.isEmpty {
+                suggestions = self.searchSuggestionGenerator.suggestions(forSearchString: searchString)
+            }
+            if let suggestions, !suggestions.isEmpty {
                 // We have at least 1 suggestion. Update the field editor to the first suggestion and show the suggestions window.
-                let suggestion = suggestions![0]
+                let suggestion = suggestions[0]
                 self.updateSuggestedUrl(suggestion.url)
                 updateFieldEditor(fieldEditor, withSuggestion: suggestion.name)
-                suggestionsController?.setSuggestions(suggestions!)
+                suggestionsController?.setSuggestions(suggestions)
                 if !(suggestionsController?.window?.isVisible ?? false) {
                     suggestionsController?.begin(for: (control as? NSTextField))
                 }
