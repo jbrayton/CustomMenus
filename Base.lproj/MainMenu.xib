@@ -520,21 +520,21 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem id="510">
-                                                        <string key="title">	Default</string>
+                                                        <string key="title">    Default</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeBaseWritingDirectionNatural:" target="-1" id="525"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem id="511">
-                                                        <string key="title">	Left to Right</string>
+                                                        <string key="title">    Left to Right</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeBaseWritingDirectionLeftToRight:" target="-1" id="526"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem id="512">
-                                                        <string key="title">	Right to Left</string>
+                                                        <string key="title">    Right to Left</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeBaseWritingDirectionRightToLeft:" target="-1" id="527"/>
@@ -545,21 +545,21 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem id="515">
-                                                        <string key="title">	Default</string>
+                                                        <string key="title">    Default</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeTextWritingDirectionNatural:" target="-1" id="528"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem id="516">
-                                                        <string key="title">	Left to Right</string>
+                                                        <string key="title">    Left to Right</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeTextWritingDirectionLeftToRight:" target="-1" id="529"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem id="517">
-                                                        <string key="title">	Right to Left</string>
+                                                        <string key="title">    Right to Left</string>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="makeTextWritingDirectionRightToLeft:" target="-1" id="530"/>
@@ -647,19 +647,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="groove" id="542"/>
                     </imageView>
-                    <textField focusRingType="none" verticalHuggingPriority="750" id="550">
+                    <searchField focusRingType="none" verticalHuggingPriority="750" id="550" customClass="NSSearchField">
                         <rect key="frame" x="20" y="545" width="506" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Picture Name" bezelStyle="round" id="551" customClass="SuggestibleTextFieldCell" customModule="CustomMenus">
+                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Picture Name" bezelStyle="round" id="551" customClass="SuggestibleTextFieldCell" customModule="CustomMenus">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
+                        </searchFieldCell>
                         <connections>
                             <action selector="takeImageFromSuggestedURL:" target="494" id="553"/>
                             <outlet property="delegate" destination="494" id="552"/>
                         </connections>
-                    </textField>
+                    </searchField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="140" y="322.5"/>
@@ -674,3 +674,4 @@
         <userDefaultsController representsSharedInstance="YES" id="557"/>
     </objects>
 </document>
+

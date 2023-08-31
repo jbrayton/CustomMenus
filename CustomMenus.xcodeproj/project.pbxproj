@@ -92,7 +92,6 @@
 				2BD14C3F12D64C0100C2A872 /* ReadMe.txt */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				873492EB11B061A5007159B7 /* Suggestions Popup */,
-				873492EA11B06171007159B7 /* MenuItemView */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -118,13 +117,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		873492EA11B06171007159B7 /* MenuItemView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = MenuItemView;
 			sourceTree = "<group>";
 		};
 		873492EB11B061A5007159B7 /* Suggestions Popup */ = {
