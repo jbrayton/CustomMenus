@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -626,44 +625,7 @@
             </items>
             <point key="canvasLocation" x="132" y="-72"/>
         </menu>
-        <window title="CustomMenus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="176" y="200" width="546" height="587"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1079"/>
-            <value key="minSize" type="size" width="546" height="587"/>
-            <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="546" height="587"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="541">
-                        <rect key="frame" x="17" y="16" width="512" height="512"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="groove" id="542"/>
-                    </imageView>
-                    <searchField focusRingType="none" verticalHuggingPriority="750" id="550">
-                        <rect key="frame" x="20" y="545" width="506" height="22"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Picture Name" bezelStyle="round" sendsWholeSearchString="YES" id="551" customClass="SUGSearchFieldCell" customModule="CustomMenus">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </searchFieldCell>
-                        <connections>
-                            <action selector="takeImageFromSuggestedURL:" target="494" id="553"/>
-                            <outlet property="delegate" destination="494" id="552"/>
-                        </connections>
-                    </searchField>
-                </subviews>
-            </view>
-            <point key="canvasLocation" x="140" y="322.5"/>
-        </window>
-        <customObject id="494" customClass="CustomMenusAppDelegate" customModule="CustomMenus">
-            <connections>
-                <outlet property="imageView" destination="541" id="544"/>
-                <outlet property="window" destination="371" id="532"/>
-            </connections>
-        </customObject>
+        <customObject id="494" customClass="CustomMenusAppDelegate" customModule="CustomMenus"/>
         <customObject id="420" customClass="NSFontManager"/>
         <userDefaultsController representsSharedInstance="YES" id="557"/>
     </objects>

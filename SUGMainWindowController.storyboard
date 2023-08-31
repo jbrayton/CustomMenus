@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="yvZ-V5-JwR">
+            <objects>
+                <windowController storyboardIdentifier="SUGMainWindowController" id="8Jr-GJ-DuV" customClass="SUGMainWindowController" customModule="CustomMenus" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="CustomMenus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="d7L-Hr-QLr">
+                        <windowStyleMask key="styleMask" titled="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="335" y="601" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1079"/>
+                        <view key="contentView" id="XE1-8l-BsN">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="8Jr-GJ-DuV" id="1r8-xf-f8w"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="abD-LQ-NGx" kind="relationship" relationship="window.shadowedContentViewController" id="Oe7-qX-ymq"/>
+                    </connections>
+                </windowController>
+                <customObject id="V7O-kf-754" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-84" y="31"/>
+        </scene>
+        <!--Main Window View Controller-->
+        <scene sceneID="T26-t5-IAK">
+            <objects>
+                <viewController id="abD-LQ-NGx" customClass="SUGMainWindowViewController" customModule="CustomMenus" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="0A2-cS-xdH">
+                        <rect key="frame" x="0.0" y="0.0" width="889" height="658"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <searchField focusRingType="none" verticalHuggingPriority="750" id="bnB-vh-4zs">
+                                <rect key="frame" x="20" y="616" width="849" height="22"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Picture Name" bezelStyle="round" sendsWholeSearchString="YES" id="cNs-VM-cne" customClass="SUGSearchFieldCell" customModule="CustomMenus">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <action selector="takeImageFromSuggestedURL:" target="5oQ-2T-jgo" id="sEA-UB-CK3"/>
+                                    <outlet property="delegate" destination="abD-LQ-NGx" id="aKm-XD-gV7"/>
+                                </connections>
+                            </searchField>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etx-ok-1NA">
+                                <rect key="frame" x="17" y="17" width="855" height="582"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="groove" id="4SR-v1-tbA"/>
+                            </imageView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="etx-ok-1NA" id="ybx-fF-E2v"/>
+                        <outlet property="searchField" destination="bnB-vh-4zs" id="UON-eN-orw"/>
+                    </connections>
+                </viewController>
+                <customObject id="5oQ-2T-jgo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="235.5" y="467"/>
+        </scene>
+    </scenes>
+</document>
