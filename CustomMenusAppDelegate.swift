@@ -51,7 +51,6 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var searchField: NSTextField!
     
     private var suggestionsController: SUGSuggestionsWindowController?
-    private var baseURL: URL?
     private var imageURLS = [URL]()
     private var suggestedURL: URL?
     
@@ -59,19 +58,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
      */
     private var skipNextSuggestion = false
     
-    /* The popup menu allows selection from image files contained in the directory set here. The suggestion list recursively searches all the sub directories for matching image names starting at the directory set here.
-     */
-    func setBaseURL(_ url: URL?) {
-        if !(url == baseURL) {
-            baseURL = url
-            imageURLS = []
-        }
-    }
-    
-    /* Start off by pointing to Desktop Pictures.
-     */
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        setBaseURL(URL(fileURLWithPath: kDesktopPicturesPath))
     }
     
     // MARK: -
@@ -99,15 +86,16 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    /* Recursively search through all the image files starting at the _baseURL for image file names that begin with the supplied string. It returns an array of NSDictionaries. Each dictionary contains a label, detailed label and an url with keys that match the binding used by each custom suggestion view defined in suggestionprototype.xib.
+    /* Recursively search through all the image files starting at the baseURL for image file names that begin with the supplied string. It returns an array of NSDictionaries. Each dictionary contains a label, detailed label and an url with keys that match the binding used by each custom suggestion view defined in suggestionprototype.xib.
      */
     func suggestions(forText text: String?) -> [SUGSuggestion]? {
-        // We don't want to hit the disk every time we need to re-calculate the the suggestion list. So we cache the result from disk. If we really wanted to be fancy, we could listen for changes to the file system at the _baseURL to know when the cache is out of date.
+        // We don't want to hit the disk every time we need to re-calculate the the suggestion list. So we cache the result from disk. If we really wanted to be fancy, we could listen for changes to the file system at the baseURL to know when the cache is out of date.
         if imageURLS.count == 0 {
             imageURLS = [URL]()
             imageURLS.reserveCapacity(1)
+            let baseURL = URL(filePath: kDesktopPicturesPath)
             let keyProperties: [URLResourceKey] = [.isDirectoryKey, .typeIdentifierKey, .localizedNameKey]
-            let dirItr: FileManager.DirectoryEnumerator? = FileManager.default.enumerator(at: baseURL!, includingPropertiesForKeys: keyProperties, options: [.skipsPackageDescendants, .skipsHiddenFiles], errorHandler: nil)
+            let dirItr: FileManager.DirectoryEnumerator? = FileManager.default.enumerator(at: baseURL, includingPropertiesForKeys: keyProperties, options: [.skipsPackageDescendants, .skipsHiddenFiles], errorHandler: nil)
             while let file = dirItr?.nextObject() as? URL {
                 var isDirectory: NSNumber? = nil
                 try? isDirectory = ((file.resourceValues(forKeys: [.isDirectoryKey]).allValues.first?.value ?? "") as? NSNumber)
