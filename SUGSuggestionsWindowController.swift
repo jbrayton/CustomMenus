@@ -178,12 +178,7 @@ class SUGSuggestionsWindowController: NSWindowController {
         }
     }
 
-    /* Update the array of suggestions. The array should consist of NSDictionaries each containing the following keys:
-     kSuggestionImageURL - The URL to an image file
-     kSuggestionLabel - The main suggestion string
-     kSuggestionDetailedLabel - A longer string that provides more detail about the suggestion
-     kSuggestionImage - [optional] The image to show in the suggestion thumbnail. If this key is not provided, a thumbnail image will be created in a background que.
-     */
+    /* Update the array of suggestions.     */
     func setSuggestions(_ suggestions: [SUGSuggestion]?) {
         self.suggestions = suggestions!
         // We only need to update the layout if the window is currently visible.
@@ -225,7 +220,7 @@ class SUGSuggestionsWindowController: NSWindowController {
         return trackingArea
     }
 
-    // Creates suggestion views from suggestionprototype.xib for every suggestion and resize the suggestion window accordingly. Also creates a thumbnail image on a background queue.
+    // Creates suggestion views for every suggestion and resize the suggestion window accordingly.
     private func layoutSuggestions() {
         let window: NSWindow? = self.window
         let contentView = window?.contentView as? SUGSuggestionsContentView
