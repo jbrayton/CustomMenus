@@ -80,27 +80,8 @@ class SUGSuggestionsWindowController: NSWindowController {
      */
     private var selectedView: NSView? {
         didSet {
-            
-            if let oldValue = oldValue as? NSVisualEffectView {
-                oldValue.material = .menu
-                oldValue.isEmphasized = false
-                oldValue.state = .inactive
-                self.updateTextFields(row: oldValue, selected: false)
-            }
-            if let newValue = self.selectedView as? NSVisualEffectView {
-                newValue.material = .selection
-                newValue.isEmphasized = true
-                newValue.state = .active
-                self.updateTextFields(row: newValue, selected: true)
-            }
-        }
-    }
-    
-    func updateTextFields( row: NSVisualEffectView, selected: Bool ) {
-        for subview in row.subviews {
-            if let textField = subview as? NSTextField {
-                textField.cell?.backgroundStyle = selected ? .emphasized : .normal
-            }
+            (oldValue as? SUGIndividualSuggestionView)?.showHighlighted(highlighted: false)
+            (self.selectedView as? SUGIndividualSuggestionView)?.showHighlighted(highlighted: true)
         }
     }
 
@@ -272,52 +253,34 @@ class SUGSuggestionsWindowController: NSWindowController {
         /* The width of each suggestion view should match the width of the window. The height is determined by the view's height set in IB.
          */
         var contentFrame: NSRect? = contentView?.frame
-        var frame = NSRect(x: 0, y: (contentView?.cornerRadius)!, width: contentFrame!.width, height: 0.0)
+        let itemHeight: CGFloat = 20.0
+        let topBottomMargin: CGFloat = 6.0
+        var frame = NSRect(x: 0, y: topBottomMargin - itemHeight, width: contentFrame!.width, height: itemHeight)
         // offset the Y posistion so that the suggetion view does not try to draw past the rounded corners.
         for entry: [String: Any] in suggestions {
             frame.origin.y += frame.size.height
-            let viewController = NSViewController(nibName: NSNib.Name("suggestionprototype"), bundle: nil)
-            let view = viewController.view as? NSVisualEffectView
-            // Make the selectedView the samee as the 0th.
+            let viewController = SUGIndividualSuggestionViewController()
+            let view = viewController.view as! SUGIndividualSuggestionView
             if viewControllers.count == 0 {
                 selectedView = view
             }
-            // Use the height of set in IB of the prototype view as the heigt for the suggestion view.
-            frame.size.height = (view?.frame.size.height)!
-            view?.frame = frame
-            if let aView = view {
-                contentView?.addSubview(aView)
-            }
-            // don't forget to create the tracking are.
+            view.frame = frame
+            contentView?.addSubview(view)
+            // Don't forget to create the tracking area.
             let trackingArea = self.trackingArea(for: view) as? NSTrackingArea
             if let anArea = trackingArea {
                 contentView?.addTrackingArea(anArea)
             }
-            // convert the suggestion enty to a mutable dictionary. This dictionary is bound to the view controller's representedObject. The represented object is what all the subviews are bound to in IB. We must use a mutable dictionary because we may change one of its key values.
-            var mutableEntry = entry
-            viewController.representedObject = mutableEntry
+            viewController.representedObject = entry
             viewControllers.append(viewController)
             if let anArea = trackingArea {
                 trackingAreas.append(anArea)
-            }
-            /* If the suggestion entry does not contain an NSImage (and never does in this sample code), then create a thumbnail from the fileURL on a background que
-             */
-            if mutableEntry[kSuggestionImage] == nil {
-                // Load the image in an operation block so that the window pops up immediatly
-                ITESharedOperationQueue()?.addOperation({
-                    if let fileURL = mutableEntry[kSuggestionImageURL] as? URL,
-                        let thumbnailImage = NSImage.iteThumbnailImage(withContentsOf: fileURL, width: kThumbnailWidth) {
-                        OperationQueue.main.addOperation({
-                            mutableEntry[kSuggestionImage] = thumbnailImage
-                        })
-                    }
-                })
             }
         }
         /* We have added all of the suggestion to the window. Now set the size of the window.
          */
         // Don't forget to account for the extra room needed the rounded corners.
-        contentFrame?.size.height = frame.maxY + (contentView?.cornerRadius)!
+        contentFrame?.size.height = frame.maxY + topBottomMargin
         var winFrame: NSRect = NSRect(origin: window!.frame.origin, size: window!.frame.size)
         winFrame.origin.y = winFrame.maxY - contentFrame!.height
         winFrame.size.height = contentFrame!.height

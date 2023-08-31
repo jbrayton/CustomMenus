@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		218404722AA0ECC800A7CBF8 /* NSImage+SUGMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */; };
+		218404762AA0F99A00A7CBF8 /* SUGIndividualSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404752AA0F99A00A7CBF8 /* SUGIndividualSuggestionViewController.swift */; };
+		218404782AA0FC7C00A7CBF8 /* SUGIndividualSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404772AA0FC7C00A7CBF8 /* SUGIndividualSuggestionView.swift */; };
 		256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */; };
 		2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BD14C3F12D64C0100C2A872 /* ReadMe.txt */; };
 		8724A6AD11AF3CE90057E785 /* SUGSuggestionsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SUGSuggestionsWindow.swift */; };
 		87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A0ECEF11AF32E600355A78 /* NSImageThumbnailExtensions.swift */; };
-		87A62A2F11A9FF80003BFB8D /* suggestionprototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A62A2D11A9FF80003BFB8D /* suggestionprototype.xib */; };
 		87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */; };
 		87CD530E11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD530D11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift */; };
 		87CD531111A9AE5D00B510D3 /* SUGSuggestionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD531011A9AE5D00B510D3 /* SUGSuggestionsWindowController.swift */; };
@@ -24,9 +25,10 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2184044E2A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		218404502A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/suggestionprototype.xib; sourceTree = "<group>"; };
 		218404512A9FD3D700A7CBF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+SUGMask.swift"; sourceTree = "<group>"; };
+		218404752AA0F99A00A7CBF8 /* SUGIndividualSuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGIndividualSuggestionViewController.swift; sourceTree = "<group>"; };
+		218404772AA0FC7C00A7CBF8 /* SUGIndividualSuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGIndividualSuggestionView.swift; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenusAppDelegate.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -107,7 +109,6 @@
 				8D1107310486CEB800E47090 /* CustomMenus-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-				87A62A2D11A9FF80003BFB8D /* suggestionprototype.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -128,6 +129,8 @@
 				87CD530D11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift */,
 				8724A6AC11AF3CE90057E785 /* SUGSuggestionsWindow.swift */,
 				87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */,
+				218404752AA0F99A00A7CBF8 /* SUGIndividualSuggestionViewController.swift */,
+				218404772AA0FC7C00A7CBF8 /* SUGIndividualSuggestionView.swift */,
 				218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */,
 			);
 			name = "Suggestions Popup";
@@ -196,7 +199,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				87A62A2F11A9FF80003BFB8D /* suggestionprototype.xib in Resources */,
 				2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,8 +213,10 @@
 				256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */,
 				87CD530E11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift in Sources */,
 				87CD531111A9AE5D00B510D3 /* SUGSuggestionsWindowController.swift in Sources */,
+				218404782AA0FC7C00A7CBF8 /* SUGIndividualSuggestionView.swift in Sources */,
 				87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */,
 				87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */,
+				218404762AA0F99A00A7CBF8 /* SUGIndividualSuggestionViewController.swift in Sources */,
 				8724A6AD11AF3CE90057E785 /* SUGSuggestionsWindow.swift in Sources */,
 				218404722AA0ECC800A7CBF8 /* NSImage+SUGMask.swift in Sources */,
 			);
@@ -235,14 +239,6 @@
 				2184044E2A9FD3D400A7CBF8 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		87A62A2D11A9FF80003BFB8D /* suggestionprototype.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				218404502A9FD3D400A7CBF8 /* Base */,
-			);
-			name = suggestionprototype.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
