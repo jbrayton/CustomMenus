@@ -44,16 +44,11 @@ import Cocoa
 let kTrackerKey = "whichImageView"
 let kThumbnailWidth: CGFloat = 24.0
 
-let kSuggestionImage = "image"
-let kSuggestionImageURL = "imageUrl"
-let kSuggestionLabel = "label"
-let kSuggestionDetailedLabel = "detailedLabel"
-
 class SUGSuggestionsWindowController: NSWindowController {
     var action: Selector?
     var target: Any?
     private var parentTextField: NSTextField?
-    private var suggestions = [[String: Any]]()
+    private var suggestions = [SUGSuggestion]()
     private var viewControllers = [NSViewController]()
     private var trackingAreas = [AnyHashable]()
     private var needsLayoutUpdate = false
@@ -190,7 +185,7 @@ class SUGSuggestionsWindowController: NSWindowController {
      kSuggestionDetailedLabel - A longer string that provides more detail about the suggestion
      kSuggestionImage - [optional] The image to show in the suggestion thumbnail. If this key is not provided, a thumbnail image will be created in a background que.
      */
-    func setSuggestions(_ suggestions: [[String: Any]]?) {
+    func setSuggestions(_ suggestions: [SUGSuggestion]?) {
         self.suggestions = suggestions!
         // We only need to update the layout if the window is currently visible.
         if (window?.isVisible)! {
@@ -200,7 +195,7 @@ class SUGSuggestionsWindowController: NSWindowController {
 
     /* Returns the dictionary of the currently selected suggestion.
      */
-    func selectedSuggestion() -> [String: Any]? {
+    func selectedSuggestion() -> SUGSuggestion? {
         var suggestion: Any? = nil
         // Find the currently selected view's controller (if there is one) and return the representedObject which is the NSMutableDictionary that was passed in via -setSuggestions:
         let selectedView: NSView? = self.selectedView
@@ -208,7 +203,7 @@ class SUGSuggestionsWindowController: NSWindowController {
             suggestion = viewController.representedObject
             break
         }
-        return suggestion as? [String: Any]
+        return suggestion as? SUGSuggestion
     }
 
     // MARK: -
@@ -257,7 +252,7 @@ class SUGSuggestionsWindowController: NSWindowController {
         let topBottomMargin: CGFloat = 6.0
         var frame = NSRect(x: 0, y: topBottomMargin - itemHeight, width: contentFrame!.width, height: itemHeight)
         // offset the Y posistion so that the suggetion view does not try to draw past the rounded corners.
-        for entry: [String: Any] in suggestions {
+        for entry in suggestions {
             frame.origin.y += frame.size.height
             let viewController = SUGIndividualSuggestionViewController()
             let view = viewController.view as! SUGIndividualSuggestionView

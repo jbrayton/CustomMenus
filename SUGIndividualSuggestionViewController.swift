@@ -23,8 +23,8 @@ class SUGIndividualSuggestionViewController : NSViewController {
     
     override var representedObject: Any? {
         didSet {
-            if let representedObject = self.representedObject as? [String:Any] {
-                (self.view as! SUGIndividualSuggestionView).label.stringValue = representedObject[kSuggestionLabel] as! String
+            if let representedObject = self.representedObject as? SUGSuggestion {
+                (self.view as! SUGIndividualSuggestionView).label.stringValue = representedObject.name
             }
         }
     }

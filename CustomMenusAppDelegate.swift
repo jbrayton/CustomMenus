@@ -90,19 +90,18 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
     /* This is the action method for when the user changes the suggestion selection. Note, this action is called continuously as the suggestion selection changes while being tracked and does not denote user committal of the suggestion. For suggestion committal, the text field's action method is used (see above). This method is wired up programatically in the -controlTextDidBeginEditing: method below.
      */
     @IBAction func update(withSelectedSuggestion sender: Any) {
-        let entry = (sender as? SUGSuggestionsWindowController)?.selectedSuggestion()
-        if entry != nil && !entry!.isEmpty {
+        if let entry = (sender as? SUGSuggestionsWindowController)?.selectedSuggestion() {
             let fieldEditor: NSText? = window.fieldEditor(false, for: searchField)
             if fieldEditor != nil {
-                updateFieldEditor(fieldEditor, withSuggestion: entry![kSuggestionLabel] as? String)
-                suggestedURL = entry![kSuggestionImageURL] as? URL
+                updateFieldEditor(fieldEditor, withSuggestion: entry.name)
+                suggestedURL = entry.url
             }
         }
     }
     
     /* Recursively search through all the image files starting at the _baseURL for image file names that begin with the supplied string. It returns an array of NSDictionaries. Each dictionary contains a label, detailed label and an url with keys that match the binding used by each custom suggestion view defined in suggestionprototype.xib.
      */
-    func suggestions(forText text: String?) -> [[String: Any]]? {
+    func suggestions(forText text: String?) -> [SUGSuggestion]? {
         // We don't want to hit the disk every time we need to re-calculate the the suggestion list. So we cache the result from disk. If we really wanted to be fancy, we could listen for changes to the file system at the _baseURL to know when the cache is out of date.
         if imageURLS.count == 0 {
             imageURLS = [URL]()
@@ -122,7 +121,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         // Search the known image URLs array for matches.
-        var suggestions = [[String: Any]]()
+        var suggestions = [SUGSuggestion]()
         suggestions.reserveCapacity(1)
         for hashableFile: AnyHashable in imageURLS {
             guard let file = hashableFile as? URL else {
@@ -133,11 +132,7 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
             if text != nil && text != "" && localizedName != nil
                 && (localizedName!.hasPrefix(text ?? "")
                     || localizedName!.uppercased().hasPrefix(text?.uppercased() ?? "")) {
-                let entry: [String: Any] = [
-                    kSuggestionLabel: localizedName!,
-                    kSuggestionDetailedLabel: file.path,
-                    kSuggestionImageURL: file
-                ]
+                let entry = SUGSuggestion(name: localizedName ?? "", url: file)
                 suggestions.append(entry)
             }
         }
@@ -164,8 +159,8 @@ class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
             if suggestions != nil && suggestions!.count > 0 {
                 // We have at least 1 suggestion. Update the field editor to the first suggestion and show the suggestions window.
                 let suggestion = suggestions![0]
-                suggestedURL = suggestion[kSuggestionImageURL] as? URL
-                updateFieldEditor(fieldEditor, withSuggestion: suggestion[kSuggestionLabel] as? String)
+                suggestedURL = suggestion.url
+                updateFieldEditor(fieldEditor, withSuggestion: suggestion.name)
                 suggestionsController?.setSuggestions(suggestions!)
                 if !(suggestionsController?.window?.isVisible ?? false) {
                     suggestionsController?.begin(for: (control as? NSTextField))
