@@ -42,8 +42,8 @@
 import Cocoa
 
 class RoundedCornersView: NSView {
-    var rcvCornerRadius: CGFloat = 10.0
-    private let cornerRadius: CGFloat = 0.0
+    
+    let cornerRadius: CGFloat = 10.0
 
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
@@ -54,7 +54,7 @@ class RoundedCornersView: NSView {
     }
 
     override func draw(_ dirtyRect: NSRect) {
-        let cornerRadius: CGFloat = rcvCornerRadius
+        let cornerRadius: CGFloat = cornerRadius
         let borderPath = NSBezierPath(roundedRect: bounds, xRadius: cornerRadius, yRadius: cornerRadius)
         NSColor.windowBackgroundColor.setFill()
         borderPath.fill()

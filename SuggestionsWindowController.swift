@@ -272,7 +272,7 @@ class SuggestionsWindowController: NSWindowController {
         /* The width of each suggestion view should match the width of the window. The height is determined by the view's height set in IB.
          */
         var contentFrame: NSRect? = contentView?.frame
-        var frame = NSRect(x: 0, y: (contentView?.rcvCornerRadius)!, width: contentFrame!.width, height: 0.0)
+        var frame = NSRect(x: 0, y: (contentView?.cornerRadius)!, width: contentFrame!.width, height: 0.0)
         // offset the Y posistion so that the suggetion view does not try to draw past the rounded corners.
         for entry: [String: Any] in suggestions {
             frame.origin.y += frame.size.height
@@ -317,7 +317,7 @@ class SuggestionsWindowController: NSWindowController {
         /* We have added all of the suggestion to the window. Now set the size of the window.
          */
         // Don't forget to account for the extra room needed the rounded corners.
-        contentFrame?.size.height = frame.maxY + (contentView?.rcvCornerRadius)!
+        contentFrame?.size.height = frame.maxY + (contentView?.cornerRadius)!
         var winFrame: NSRect = NSRect(origin: window!.frame.origin, size: window!.frame.size)
         winFrame.origin.y = winFrame.maxY - contentFrame!.height
         winFrame.size.height = contentFrame!.height
