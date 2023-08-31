@@ -42,8 +42,8 @@
 import Cocoa
 
 class RoundedCornersView: NSView {
-    var rcvCornerRadius: CGFloat = 0.0
-    private var cornerRadius: CGFloat = 0.0
+    var rcvCornerRadius: CGFloat = 10.0
+    private let cornerRadius: CGFloat = 0.0
 
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
@@ -51,7 +51,6 @@ class RoundedCornersView: NSView {
 
     override init(frame: NSRect) {
         super.init(frame: frame)
-        rcvCornerRadius = 10.0
     }
 
     override func draw(_ dirtyRect: NSRect) {
