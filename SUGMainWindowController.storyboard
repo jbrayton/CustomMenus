@@ -39,21 +39,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="889" height="658"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <searchField focusRingType="none" verticalHuggingPriority="750" id="bnB-vh-4zs">
-                                <rect key="frame" x="20" y="616" width="849" height="22"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Picture Name" bezelStyle="round" sendsWholeSearchString="YES" id="cNs-VM-cne" customClass="SUGSearchFieldCell" customModule="CustomMenus">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <action selector="takeImageFromSuggestedURL:" target="5oQ-2T-jgo" id="sEA-UB-CK3"/>
-                                    <outlet property="delegate" destination="abD-LQ-NGx" id="aKm-XD-gV7"/>
-                                </connections>
-                            </searchField>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etx-ok-1NA">
-                                <rect key="frame" x="17" y="17" width="855" height="582"/>
+                                <rect key="frame" x="17" y="17" width="855" height="624"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="groove" id="4SR-v1-tbA"/>
                             </imageView>
@@ -61,7 +48,6 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="etx-ok-1NA" id="ybx-fF-E2v"/>
-                        <outlet property="searchField" destination="bnB-vh-4zs" id="UON-eN-orw"/>
                     </connections>
                 </viewController>
                 <customObject id="5oQ-2T-jgo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

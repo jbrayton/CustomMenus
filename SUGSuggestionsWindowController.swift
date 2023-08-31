@@ -90,33 +90,32 @@ class SUGSuggestionsWindowController: NSWindowController {
     /* Position and lay out the suggestions window, set up auto cancelling tracking, and wires up the logical relationship for accessibility.
      */
     func begin(for parentTextField: NSTextField?) {
-        let suggestionWindow: NSWindow? = window
-        let parentWindow: NSWindow? = parentTextField?.window
-        let parentFrame: NSRect? = parentTextField?.frame
-        var frame: NSRect? = suggestionWindow?.frame
-        frame?.size.width = (parentFrame?.size.width)!
-        // Place the suggestion window just underneath the text field and make it the same width as th text field.
-        var location = parentTextField?.superview?.convert(parentFrame?.origin ?? NSPoint.zero, to: nil)
-        location = parentWindow?.convertToScreen(NSRect(x: location!.x, y: location!.y, width: 0, height: 0)).origin
-        location?.y -= 2.0
+        guard let suggestionWindow = window, let parentTextField, let parentWindow = parentTextField.window, let parentSuperview = parentTextField.superview else {
+            return
+        }
+        let parentFrame: NSRect = parentTextField.frame
+        var frame: NSRect = suggestionWindow.frame
+        frame.size.width = parentFrame.size.width
+        // Place the suggestion window just underneath the text field and make it the same width as the text field.
+        var location = parentSuperview.convert(parentFrame.origin, to: nil)
+        location = parentWindow.convertToScreen(NSRect(x: location.x, y: location.y - parentTextField.frame.size.height, width: 0, height: 0)).origin
+        location.y -= 2.0
         // nudge the suggestion window down so it doesn't overlapp the parent view
-        suggestionWindow?.setFrame(frame ?? NSRect.zero, display: false)
-        suggestionWindow?.setFrameTopLeftPoint(location ?? NSPoint.zero)
+        suggestionWindow.setFrame(frame, display: false)
+        suggestionWindow.setFrameTopLeftPoint(location)
         layoutSuggestions()
         // The height of the window will be adjusted in -layoutSuggestions.
         // add the suggestion window as a child window so that it plays nice with Expose
-        if let aWindow = suggestionWindow {
-            parentWindow?.addChildWindow(aWindow, ordered: .above)
-        }
+        parentWindow.addChildWindow(suggestionWindow, ordered: .above)
         // keep track of the parent text field in case we need to commit or abort editing.
         self.parentTextField = parentTextField
         // The window must know its accessibility parent, the control must know the window one of its accessibility children
         // Note that views (controls especially) are often ignored, so we want the unignored descendant - usually a cell
         // Finally, post that we have created the unignored decendant of the suggestions window
-        let unignoredAccessibilityDescendant = NSAccessibility.unignoredDescendant(of: parentTextField!)
+        let unignoredAccessibilityDescendant = NSAccessibility.unignoredDescendant(of: parentTextField)
         (suggestionWindow as? SUGSuggestionsWindow)?.parentElement = unignoredAccessibilityDescendant
         (unignoredAccessibilityDescendant as? SUGSearchFieldCell)?.suggestionsWindow = suggestionWindow
-        if let win = suggestionWindow, let winD = NSAccessibility.unignoredDescendant(of: win) {
+        if let winD = NSAccessibility.unignoredDescendant(of: suggestionWindow) {
             NSAccessibility.post(element: winD, notification: .created)
         }
         // setup auto cancellation if the user clicks outside the suggestion window and parent text field. Note: this is a local event monitor and will only catch clicks in windows that belong to this application. We use another technique below to catch clicks in other application windows.
@@ -129,10 +128,10 @@ class SUGSuggestionsWindowController: NSWindowController {
                      
                      Use hit testing to determine if the click is in the parent text field. Note: when editing an NSTextField, there is a field editor that covers the text field that is performing the actual editing. Therefore, we need to check for the field editor when doing hit testing.
                      */
-                    let contentView: NSView? = parentWindow?.contentView
+                    let contentView: NSView? = parentWindow.contentView
                     let locationTest: NSPoint? = contentView?.convert(event.locationInWindow, from: nil)
                     let hitView: NSView? = contentView?.hitTest(locationTest ?? NSPoint.zero)
-                    let fieldEditor: NSText? = parentTextField?.currentEditor()
+                    let fieldEditor: NSText? = parentTextField.currentEditor()
                     if hitView != parentTextField && ((fieldEditor != nil) && hitView != fieldEditor) {
                         // Since the click is not in the parent text field, return nil, so the parent window does not try to process it, and cancel the suggestion window.
                         event = nil
