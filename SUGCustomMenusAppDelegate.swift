@@ -41,10 +41,8 @@
  */
 import Cocoa
 
-let kDesktopPicturesPath = "/System/Library/Desktop Pictures"
-
 @NSApplicationMain
-class CustomMenusAppDelegate: NSObject, NSApplicationDelegate {
+class SUGCustomMenusAppDelegate: NSObject, NSApplicationDelegate {
 
     private var mainWindowController: SUGMainWindowController?
     

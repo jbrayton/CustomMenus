@@ -625,7 +625,7 @@
             </items>
             <point key="canvasLocation" x="132" y="-72"/>
         </menu>
-        <customObject id="494" customClass="CustomMenusAppDelegate" customModule="CustomMenus"/>
+        <customObject id="494" customClass="SUGCustomMenusAppDelegate" customModule="CustomMenus"/>
         <customObject id="420" customClass="NSFontManager"/>
         <userDefaultsController representsSharedInstance="YES" id="557"/>
     </objects>

@@ -15,7 +15,7 @@
 		2184047E2AA1206300A7CBF8 /* SUGMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2184047D2AA1206300A7CBF8 /* SUGMainWindowController.swift */; };
 		218404802AA1258700A7CBF8 /* SUGMainWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */; };
 		218404822AA125D900A7CBF8 /* SUGMainWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404812AA125D900A7CBF8 /* SUGMainWindowViewController.swift */; };
-		256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */; };
+		256AC3DA0F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */; };
 		2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BD14C3F12D64C0100C2A872 /* ReadMe.txt */; };
 		8724A6AD11AF3CE90057E785 /* SUGSuggestionsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SUGSuggestionsWindow.swift */; };
 		87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */; };
@@ -36,7 +36,7 @@
 		2184047D2AA1206300A7CBF8 /* SUGMainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGMainWindowController.swift; sourceTree = "<group>"; };
 		2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SUGMainWindowController.storyboard; sourceTree = "<group>"; };
 		218404812AA125D900A7CBF8 /* SUGMainWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGMainWindowViewController.swift; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenusAppDelegate.swift; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGCustomMenusAppDelegate.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2BD14C3F12D64C0100C2A872 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */,
+				256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */,
 				2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */,
 				2184047D2AA1206300A7CBF8 /* SUGMainWindowController.swift */,
 				218404812AA125D900A7CBF8 /* SUGMainWindowViewController.swift */,
@@ -221,7 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2184047E2AA1206300A7CBF8 /* SUGMainWindowController.swift in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift in Sources */,
 				87CD530E11A9AD0C00B510D3 /* SUGSuggestionsContentView.swift in Sources */,
 				87CD531111A9AE5D00B510D3 /* SUGSuggestionsWindowController.swift in Sources */,
 				218404822AA125D900A7CBF8 /* SUGMainWindowViewController.swift in Sources */,

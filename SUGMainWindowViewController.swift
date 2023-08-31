@@ -10,6 +10,8 @@ import UniformTypeIdentifiers
 
 class SUGMainWindowViewController : NSViewController {
     
+    private let kDesktopPicturesPath = "/System/Library/Desktop Pictures"
+
     private var suggestionsController: SUGSuggestionsWindowController?
     private var imageURLS = [URL]()
     private var suggestedURL: URL?
