@@ -85,11 +85,21 @@ class SuggestionsWindowController: NSWindowController {
                 oldValue.material = .menu
                 oldValue.isEmphasized = false
                 oldValue.state = .inactive
+                self.updateTextFields(row: oldValue, selected: false)
             }
             if let newValue = self.selectedView as? NSVisualEffectView {
                 newValue.material = .selection
                 newValue.isEmphasized = true
                 newValue.state = .active
+                self.updateTextFields(row: newValue, selected: true)
+            }
+        }
+    }
+    
+    func updateTextFields( row: NSVisualEffectView, selected: Bool ) {
+        for subview in row.subviews {
+            if let textField = subview as? NSTextField {
+                textField.cell?.backgroundStyle = selected ? .emphasized : .normal
             }
         }
     }
