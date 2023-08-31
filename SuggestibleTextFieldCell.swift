@@ -48,7 +48,7 @@ class SuggestibleTextFieldCell: NSSearchFieldCell {
      */
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         let textColor: NSColor? = self.textColor
-        if backgroundStyle == .dark {
+        if backgroundStyle == .emphasized {
             self.textColor = NSColor.white
         }
         super.draw(withFrame: cellFrame, in: controlView)
@@ -65,14 +65,14 @@ class SuggestibleTextFieldCell: NSSearchFieldCell {
 
     /* The search text field in the MainMenu.xib has the class for its cell set to this class so that it will report the suggestions window as one of its accessibility children when the suggestions window is present.
      */
-    override func accessibilityAttributeValue(_ attribute: NSAccessibility.Attribute) -> Any? {
-        if attribute == .children,
-            let parentWindow = suggestionsWindow,
-            let children = super.accessibilityAttributeValue(.children) as? [Any],
+    override func accessibilityChildren() -> [Any]? {
+        if let parentWindow = suggestionsWindow,
+           let children = super.accessibilityChildren(),
            let descendant = NSAccessibility.unignoredDescendant(of: parentWindow) {
             return children + [descendant]
         } else {
-            return super.accessibilityAttributeValue(attribute)
+            return super.accessibilityChildren()
         }
     }
+    
 }
