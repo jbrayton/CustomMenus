@@ -51,6 +51,19 @@ class RoundedCornersView: NSView {
 
     override init(frame: NSRect) {
         super.init(frame: frame)
+        let visualEffectView = NSVisualEffectView()
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        visualEffectView.blendingMode = .withinWindow
+        visualEffectView.material = .menu
+        visualEffectView.state = .active
+        visualEffectView.maskImage = .SUG_mask(withCornerRadius: self.cornerRadius)
+        self.addSubview(visualEffectView)
+        self.addConstraints([
+            visualEffectView.topAnchor.constraint(equalTo: self.topAnchor),
+            visualEffectView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            visualEffectView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            visualEffectView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
     }
 
     override func draw(_ dirtyRect: NSRect) {
@@ -101,3 +114,5 @@ class RoundedCornersView: NSView {
     }
 
 }
+
+

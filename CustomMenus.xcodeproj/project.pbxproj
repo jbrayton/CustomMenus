@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		218404722AA0ECC800A7CBF8 /* NSImage+SUGMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */; };
 		256AC3DA0F4B6AC300CF3369 /* CustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */; };
 		2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BD14C3F12D64C0100C2A872 /* ReadMe.txt */; };
 		8724A6AD11AF3CE90057E785 /* SuggestionsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SuggestionsWindow.swift */; };
@@ -25,6 +26,7 @@
 		2184044E2A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		218404502A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/suggestionprototype.xib; sourceTree = "<group>"; };
 		218404512A9FD3D700A7CBF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+SUGMask.swift"; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* CustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMenusAppDelegate.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -126,6 +128,7 @@
 				87CD530D11A9AD0C00B510D3 /* RoundedCornersView.swift */,
 				8724A6AC11AF3CE90057E785 /* SuggestionsWindow.swift */,
 				87A62F6011AB5081003BFB8D /* SuggestibleTextFieldCell.swift */,
+				218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */,
 			);
 			name = "Suggestions Popup";
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				87A62F6111AB5081003BFB8D /* SuggestibleTextFieldCell.swift in Sources */,
 				87A0ECF011AF32E600355A78 /* NSImageThumbnailExtensions.swift in Sources */,
 				8724A6AD11AF3CE90057E785 /* SuggestionsWindow.swift in Sources */,
+				218404722AA0ECC800A7CBF8 /* NSImage+SUGMask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
