@@ -38,13 +38,17 @@ class SUGMainWindowController : NSWindowController {
     /* This method is invoked when the user presses return (or enter) on the search text field. We don't want to use the text from the search field as it is just the image filename without a path. Also, it may not be valid. Instead, use this user action to trigger setting the large image view in the main window to the currently suggested URL, if there is one.
      */
     @IBAction func takeImage(fromSuggestedURL sender: Any) {
-        if let suggestionsWindowController = self.suggestionsWindowController, self.suggestionsWindowController?.window?.isVisible == true {
-            let suggestion = suggestionsWindowController.selectedSuggestion()
-            (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: suggestion?.url)
+        if !self.skipNextSuggestion {
+            if let suggestionsWindowController = self.suggestionsWindowController, self.suggestionsWindowController?.window?.isVisible == true {
+                let suggestion = suggestionsWindowController.selectedSuggestion()
+                (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: suggestion?.url)
+            } else {
+                (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: nil)
+            }
+            self.suggestionsWindowController?.cancelSuggestions()
         } else {
-            (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: nil)
+            self.skipNextSuggestion = false
         }
-        self.suggestionsWindowController?.cancelSuggestions()
     }
     
     /* Update the field editor with a suggested string. The additional suggested characters are auto selected.
@@ -68,8 +72,11 @@ class SUGMainWindowController : NSWindowController {
             }
             if let suggestions, !suggestions.isEmpty {
                 // We have at least 1 suggestion. Update the field editor to the first suggestion and show the suggestions window.
-                let suggestion = suggestions[0]
-                updateFieldEditor(fieldEditor, withSuggestion: suggestion.name)
+                
+                if self.searchSuggestionGenerator.automaticallySelectFirstSuggestion {
+                    let suggestion = suggestions[0]
+                    updateFieldEditor(fieldEditor, withSuggestion: suggestion.name)
+                }
                 suggestionsWindowController?.setSuggestions(suggestions)
                 if !(suggestionsWindowController?.window?.isVisible ?? false) {
                     suggestionsWindowController?.begin(for: (control as? NSTextField))
@@ -91,7 +98,7 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
         if !skipNextSuggestion {
             // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
             if suggestionsWindowController == nil {
-                suggestionsWindowController = SUGSuggestionsWindowController()
+                suggestionsWindowController = SUGSuggestionsWindowController(automaticallySelectFirstSuggestion: self.searchSuggestionGenerator.automaticallySelectFirstSuggestion)
                 suggestionsWindowController?.target = self
                 suggestionsWindowController?.action = #selector(SUGMainWindowController.update(withSelectedSuggestion:))
             }

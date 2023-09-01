@@ -45,6 +45,7 @@ let kTrackerKey = "whichImageView"
 let kThumbnailWidth: CGFloat = 24.0
 
 class SUGSuggestionsWindowController: NSWindowController {
+    let automaticallySelectFirstSuggestion: Bool
     var action: Selector?
     var target: Any?
     private var parentTextField: NSTextField?
@@ -55,7 +56,8 @@ class SUGSuggestionsWindowController: NSWindowController {
     private var localMouseDownEventMonitor: Any?
     private var lostFocusObserver: Any?
 
-    init() {
+    init( automaticallySelectFirstSuggestion: Bool ) {
+        self.automaticallySelectFirstSuggestion = automaticallySelectFirstSuggestion
         let contentRec = NSRect(x: 0, y: 0, width: 20, height: 20)
         let window = SUGSuggestionsWindow(contentRect: contentRec, defer: true)
         super.init(window: window)
@@ -68,7 +70,7 @@ class SUGSuggestionsWindowController: NSWindowController {
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError()
     }
 
     /* Custom selectedView property setter so that we can set the highlighted property of the old and new selected views.
@@ -250,7 +252,7 @@ class SUGSuggestionsWindowController: NSWindowController {
             frame.origin.y += frame.size.height
             let viewController = SUGIndividualSuggestionViewController()
             let view = viewController.view as! SUGIndividualSuggestionView
-            if viewControllers.count == 0 {
+            if self.viewControllers.isEmpty, self.automaticallySelectFirstSuggestion {
                 selectedView = view
             }
             view.frame = frame

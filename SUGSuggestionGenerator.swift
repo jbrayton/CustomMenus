@@ -14,6 +14,11 @@ class SUGSuggestionGenerator {
 
     var imageUrls = [URL]()
     
+    // If true and if there is at least one applicable suggestion, the first suggestion will be immediately selected.
+    // The search field will be populated with the name of that suggestion. Pressing return will execute that suggestion.
+    // If false, the user must select a suggestion with the arrow keys or mouse in order to execute a selection.
+    let automaticallySelectFirstSuggestion = false
+    
     func suggestions( forSearchString searchString: String ) -> [SUGSuggestion] {
         
         guard !searchString.isEmpty else {
