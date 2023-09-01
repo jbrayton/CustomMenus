@@ -79,6 +79,9 @@ class SUGSuggestionsWindowController: NSWindowController {
         didSet {
             (oldValue as? SUGIndividualSuggestionView)?.showHighlighted(highlighted: false)
             (self.selectedView as? SUGIndividualSuggestionView)?.showHighlighted(highlighted: true)
+            if let cell = self.parentTextField?.cell, self.selectedView as? SUGIndividualSuggestionView != nil {
+                NSAccessibility.post(element: cell, notification: .selectedChildrenChanged)
+            }
         }
     }
 
@@ -117,8 +120,8 @@ class SUGSuggestionsWindowController: NSWindowController {
         let unignoredAccessibilityDescendant = NSAccessibility.unignoredDescendant(of: parentTextField)
         (suggestionWindow as? SUGSuggestionsWindow)?.parentElement = unignoredAccessibilityDescendant
         (unignoredAccessibilityDescendant as? SUGSearchFieldCell)?.suggestionsWindow = suggestionWindow
-        if let winD = NSAccessibility.unignoredDescendant(of: suggestionWindow) {
-            NSAccessibility.post(element: winD, notification: .created)
+        if let unignoredAccessibilityDescendant {
+            NSAccessibility.post(element: unignoredAccessibilityDescendant, notification: .created)
         }
         // setup auto cancellation if the user clicks outside the suggestion window and parent text field. Note: this is a local event monitor and will only catch clicks in windows that belong to this application. We use another technique below to catch clicks in other application windows.
         localMouseDownEventMonitor = NSEvent.addLocalMonitorForEvents(matching: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown, NSEvent.EventTypeMask.otherMouseDown], handler: {(_ event: NSEvent) -> NSEvent? in
@@ -158,13 +161,13 @@ class SUGSuggestionsWindowController: NSWindowController {
      Note: It is safe to call this method even if the suggestions window is not currently visible.
      */
     func cancelSuggestions() {
-        let suggestionWindow: NSWindow? = window
-        if suggestionWindow?.isVisible ?? false {
-            // Remove the suggestion window from parent window's child window collection before ordering out or the parent window will get ordered out with the suggestion window.
-            if let aWindow = suggestionWindow {
-                suggestionWindow?.parent?.removeChildWindow(aWindow)
+        if let suggestionWindow = self.window, let parentTextField = self.parentTextField, suggestionWindow.isVisible {
+            if let unignoredAccessibilityDescendant = NSAccessibility.unignoredDescendant(of: parentTextField) {
+                NSAccessibility.post(element: unignoredAccessibilityDescendant, notification: .uiElementDestroyed)
             }
-            suggestionWindow?.orderOut(nil)
+
+            suggestionWindow.parent?.removeChildWindow(suggestionWindow)
+            suggestionWindow.orderOut(nil)
             // Disconnect the accessibility parent/child relationship
             ((suggestionWindow as? SUGSuggestionsWindow)?.parentElement as? SUGSearchFieldCell)?.suggestionsWindow = nil
             (suggestionWindow as? SUGSuggestionsWindow)?.parentElement = nil

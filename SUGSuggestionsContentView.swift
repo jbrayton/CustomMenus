@@ -103,14 +103,24 @@ class SUGSuggestionsContentView: NSView {
         var selectedChildren = [AnyHashable]()
         if let accessibilityChildren = self.accessibilityChildren() {
             for element: Any in accessibilityChildren {
-                if let control = element as? NSControl {
-                    if control.isHighlighted {
+                if let control = element as? SUGIndividualSuggestionView {
+                    if control.backgroundView.isEmphasized {
                         selectedChildren.append(control)
                     }
                 }
             }
         }
         return selectedChildren
+    }
+    
+    override func accessibilityChildren() -> [Any]? {
+        var result = [Any]()
+        for child in self.subviews {
+            if let child = child as? SUGIndividualSuggestionView {
+                result.append(child)
+            }
+        }
+        return result
     }
 
 }

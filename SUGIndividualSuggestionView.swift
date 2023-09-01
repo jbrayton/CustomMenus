@@ -65,4 +65,12 @@ class SUGIndividualSuggestionView : NSView {
         self.imageView.cell?.backgroundStyle = highlighted ? .emphasized : .normal
     }
     
+    override func accessibilityChildren() -> [Any]? {
+        return [Any]()
+    }
+    
+    override func accessibilityLabel() -> String? {
+        return self.label.stringValue
+    }
+    
 }

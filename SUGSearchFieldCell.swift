@@ -50,10 +50,16 @@ class SUGSearchFieldCell: NSSearchFieldCell {
     }
 
     override func accessibilityChildren() -> [Any]? {
-        if let parentWindow = suggestionsWindow,
-           let children = super.accessibilityChildren(),
-           let descendant = NSAccessibility.unignoredDescendant(of: parentWindow) {
-           return children + [descendant]
+        if let parentWindow = suggestionsWindow, let children = super.accessibilityChildren(), let descendant = NSAccessibility.unignoredDescendant(of: parentWindow) {
+            return children + [descendant]
+        } else {
+            return super.accessibilityChildren()
+        }
+    }
+    
+    override func accessibilitySelectedChildren() -> [Any]? {
+        if let selectedChildren = suggestionsWindow?.contentView?.accessibilitySelectedChildren() {
+            return selectedChildren
         } else {
             return super.accessibilityChildren()
         }
