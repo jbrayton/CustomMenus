@@ -42,34 +42,18 @@
 import Cocoa
 
 class SUGSearchFieldCell: NSSearchFieldCell {
+
     var suggestionsWindow: NSWindow?
 
-    /* Force NSTextFieldCell to use white as the text color when drawing on a dark background. NSTextField does this by default when the text color is set to black. In the suggestionsprototype.xib, there is an NSTextField that has a blueish text color. In IB we set the cell of that text field to this class to get the drawing behavior we want.
-     */
-    override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
-        let textColor: NSColor? = self.textColor
-        if backgroundStyle == .emphasized {
-            self.textColor = NSColor.white
-        }
-        super.draw(withFrame: cellFrame, in: controlView)
-
-        self.textColor = textColor
-    }
-
-    // MARK: -
-    // MARK: Accessibility
-    // Make sure we are reported by accessibility.
     override func accessibilityIsIgnored() -> Bool {
         return false
     }
 
-    /* The search text field in the MainMenu.xib has the class for its cell set to this class so that it will report the suggestions window as one of its accessibility children when the suggestions window is present.
-     */
     override func accessibilityChildren() -> [Any]? {
         if let parentWindow = suggestionsWindow,
            let children = super.accessibilityChildren(),
            let descendant = NSAccessibility.unignoredDescendant(of: parentWindow) {
-            return children + [descendant]
+           return children + [descendant]
         } else {
             return super.accessibilityChildren()
         }
