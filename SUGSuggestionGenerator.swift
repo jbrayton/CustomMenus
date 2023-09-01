@@ -54,7 +54,9 @@ class SUGSuggestionGenerator {
             }
             if let localizedName = try? ((file.resourceValues(forKeys: [.localizedNameKey]).allValues.first?.value ?? "") as? String) {
                 if (localizedName.hasPrefix(searchString) || localizedName.uppercased().hasPrefix(upperSearchString)) {
-                    let entry = SUGSuggestion(name: localizedName, url: file)
+                    // Assign the first suggestion a square image, each subsequent suggestion a circle image.
+                    let imageName = suggestions.isEmpty ? "square" : "circle"
+                    let entry = SUGSuggestion(name: localizedName, url: file, imageName: imageName)
                     suggestions.append(entry)
                 }
             }

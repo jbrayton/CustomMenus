@@ -11,5 +11,6 @@ struct SUGSuggestion {
     
     let name: String
     let url: URL
+    let imageName: String
     
 }

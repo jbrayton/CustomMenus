@@ -16,6 +16,7 @@
 		218404802AA1258700A7CBF8 /* SUGMainWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */; };
 		218404822AA125D900A7CBF8 /* SUGMainWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404812AA125D900A7CBF8 /* SUGMainWindowViewController.swift */; };
 		21E7837D2AA142A60027D003 /* SUGSuggestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E7837C2AA142A60027D003 /* SUGSuggestionGenerator.swift */; };
+		21E7837F2AA17C0F0027D003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21E7837E2AA17C0F0027D003 /* Assets.xcassets */; };
 		256AC3DA0F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */; };
 		2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BD14C3F12D64C0100C2A872 /* ReadMe.txt */; };
 		8724A6AD11AF3CE90057E785 /* SUGSuggestionsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SUGSuggestionsWindow.swift */; };
@@ -38,6 +39,7 @@
 		2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SUGMainWindowController.storyboard; sourceTree = "<group>"; };
 		218404812AA125D900A7CBF8 /* SUGMainWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGMainWindowViewController.swift; sourceTree = "<group>"; };
 		21E7837C2AA142A60027D003 /* SUGSuggestionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGSuggestionGenerator.swift; sourceTree = "<group>"; };
+		21E7837E2AA17C0F0027D003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGCustomMenusAppDelegate.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				532273A015F92B3100F89E73 /* CustomMenus.entitlements */,
+				21E7837E2AA17C0F0027D003 /* Assets.xcassets */,
 				2BD14C3F12D64C0100C2A872 /* ReadMe.txt */,
 				21E7837B2AA1428E0027D003 /* New Group */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -221,6 +224,7 @@
 				218404802AA1258700A7CBF8 /* SUGMainWindowController.storyboard in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */,
+				21E7837F2AA17C0F0027D003 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

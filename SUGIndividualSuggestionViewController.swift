@@ -23,8 +23,9 @@ class SUGIndividualSuggestionViewController : NSViewController {
     
     override var representedObject: Any? {
         didSet {
-            if let representedObject = self.representedObject as? SUGSuggestion {
-                (self.view as! SUGIndividualSuggestionView).label.stringValue = representedObject.name
+            if let representedObject = self.representedObject as? SUGSuggestion, let view = self.view as? SUGIndividualSuggestionView {
+                view.label.stringValue = representedObject.name
+                view.imageView.image = NSImage(named: representedObject.imageName)
             }
         }
     }
