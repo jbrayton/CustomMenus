@@ -18,6 +18,16 @@ class SUGIndividualSuggestionView : NSView {
     var backgroundView: NSVisualEffectView!
     var label: NSTextField!
 
+    var highlighted: Bool = false {
+        didSet {
+            self.backgroundView.material = self.highlighted ? .selection : .menu
+            self.backgroundView.isEmphasized = self.highlighted
+            self.backgroundView.state = self.highlighted ? .active : .inactive
+            self.label.cell?.backgroundStyle = self.highlighted ? .emphasized : .normal
+            self.imageView.cell?.backgroundStyle = self.highlighted ? .emphasized : .normal
+        }
+    }
+    
     init() {
         super.init(frame: .zero)
 
@@ -55,14 +65,6 @@ class SUGIndividualSuggestionView : NSView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func showHighlighted( highlighted: Bool ) {
-        self.backgroundView.material = highlighted ? .selection : .menu
-        self.backgroundView.isEmphasized = highlighted
-        self.backgroundView.state = highlighted ? .active : .inactive
-        self.label.cell?.backgroundStyle = highlighted ? .emphasized : .normal
-        self.imageView.cell?.backgroundStyle = highlighted ? .emphasized : .normal
     }
     
     override func accessibilityChildren() -> [Any]? {

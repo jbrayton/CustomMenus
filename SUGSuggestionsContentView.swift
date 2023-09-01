@@ -104,7 +104,7 @@ class SUGSuggestionsContentView: NSView {
         if let accessibilityChildren = self.accessibilityChildren() {
             for element: Any in accessibilityChildren {
                 if let control = element as? SUGIndividualSuggestionView {
-                    if control.backgroundView.isEmphasized {
+                    if control.highlighted {
                         selectedChildren.append(control)
                     }
                 }

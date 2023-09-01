@@ -77,10 +77,15 @@ class SUGSuggestionsWindowController: NSWindowController {
      */
     private var selectedView: NSView? {
         didSet {
-            (oldValue as? SUGIndividualSuggestionView)?.showHighlighted(highlighted: false)
-            (self.selectedView as? SUGIndividualSuggestionView)?.showHighlighted(highlighted: true)
-            if let cell = self.parentTextField?.cell, self.selectedView as? SUGIndividualSuggestionView != nil {
-                NSAccessibility.post(element: cell, notification: .selectedChildrenChanged)
+            (oldValue as? SUGIndividualSuggestionView)?.highlighted = false
+            if let oldSelectedView = oldValue as? SUGIndividualSuggestionView {
+                oldSelectedView.highlighted = false
+            }
+            if let newSelectedView = self.selectedView as? SUGIndividualSuggestionView {
+                newSelectedView.highlighted = true
+                if let cell = self.parentTextField?.cell {
+                    NSAccessibility.post(element: cell, notification: .selectedChildrenChanged)
+                }
             }
         }
     }

@@ -73,13 +73,13 @@ class SUGMainWindowController : NSWindowController {
             if let suggestions, !suggestions.isEmpty {
                 // We have at least 1 suggestion. Update the field editor to the first suggestion and show the suggestions window.
                 
-                if self.searchSuggestionGenerator.automaticallySelectFirstSuggestion {
-                    let suggestion = suggestions[0]
-                    updateFieldEditor(fieldEditor, withSuggestion: suggestion.name)
-                }
                 suggestionsWindowController?.setSuggestions(suggestions)
                 if !(suggestionsWindowController?.window?.isVisible ?? false) {
                     suggestionsWindowController?.begin(for: (control as? NSTextField))
+                }
+                if self.searchSuggestionGenerator.automaticallySelectFirstSuggestion {
+                    let suggestion = suggestions[0]
+                    updateFieldEditor(fieldEditor, withSuggestion: suggestion.name)
                 }
             } else {
                 // No suggestions. Cancel the suggestion window and set the _suggestedURL to nil.
