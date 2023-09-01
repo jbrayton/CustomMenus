@@ -16,7 +16,7 @@ class SUGMainWindowController : NSWindowController {
     private var skipNextSuggestion = false
     private var searchField: NSTextField?
 
-    private var suggestionsController: SUGSuggestionsWindowController?
+    private var suggestionsWindowController: SUGSuggestionsWindowController?
 
     override func windowDidLoad() {
         let toolbar = NSToolbar(identifier: "SUGMainWindowController.toolbar")
@@ -31,9 +31,20 @@ class SUGMainWindowController : NSWindowController {
         if let entry = (sender as? SUGSuggestionsWindowController)?.selectedSuggestion() {
             if let fieldEditor = self.window?.fieldEditor(false, for: searchField) {
                 updateFieldEditor(fieldEditor, withSuggestion: entry.name)
-                self.updateSuggestedUrl(entry.url)
             }
         }
+    }
+    
+    /* This method is invoked when the user presses return (or enter) on the search text field. We don't want to use the text from the search field as it is just the image filename without a path. Also, it may not be valid. Instead, use this user action to trigger setting the large image view in the main window to the currently suggested URL, if there is one.
+     */
+    @IBAction func takeImage(fromSuggestedURL sender: Any) {
+        if let suggestionsWindowController = self.suggestionsWindowController, self.suggestionsWindowController?.window?.isVisible == true {
+            let suggestion = suggestionsWindowController.selectedSuggestion()
+            (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: suggestion?.url)
+        } else {
+            (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: nil)
+        }
+        self.suggestionsWindowController?.cancelSuggestions()
     }
     
     /* Update the field editor with a suggested string. The additional suggested characters are auto selected.
@@ -58,22 +69,16 @@ class SUGMainWindowController : NSWindowController {
             if let suggestions, !suggestions.isEmpty {
                 // We have at least 1 suggestion. Update the field editor to the first suggestion and show the suggestions window.
                 let suggestion = suggestions[0]
-                self.updateSuggestedUrl(suggestion.url)
                 updateFieldEditor(fieldEditor, withSuggestion: suggestion.name)
-                suggestionsController?.setSuggestions(suggestions)
-                if !(suggestionsController?.window?.isVisible ?? false) {
-                    suggestionsController?.begin(for: (control as? NSTextField))
+                suggestionsWindowController?.setSuggestions(suggestions)
+                if !(suggestionsWindowController?.window?.isVisible ?? false) {
+                    suggestionsWindowController?.begin(for: (control as? NSTextField))
                 }
             } else {
                 // No suggestions. Cancel the suggestion window and set the _suggestedURL to nil.
-                self.updateSuggestedUrl(nil)
-                suggestionsController?.cancelSuggestions()
+                suggestionsWindowController?.cancelSuggestions()
             }
         }
-    }
-    
-    func updateSuggestedUrl( _ url: URL? ) {
-        (self.contentViewController as? SUGMainWindowViewController)?.suggestedURL = url
     }
     
 }
@@ -85,10 +90,10 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
     func controlTextDidBeginEditing(_ notification: Notification) {
         if !skipNextSuggestion {
             // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
-            if suggestionsController == nil {
-                suggestionsController = SUGSuggestionsWindowController()
-                suggestionsController?.target = self
-                suggestionsController?.action = #selector(SUGMainWindowController.update(withSelectedSuggestion:))
+            if suggestionsWindowController == nil {
+                suggestionsWindowController = SUGSuggestionsWindowController()
+                suggestionsWindowController?.target = self
+                suggestionsWindowController?.action = #selector(SUGMainWindowController.update(withSelectedSuggestion:))
             }
             updateSuggestions(from: notification.object as? NSControl)
         }
@@ -100,10 +105,8 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
         if !skipNextSuggestion {
             updateSuggestions(from: notification.object as? NSControl)
         } else {
-            // If we are skipping this suggestion, the set the _suggestedURL to nil and cancel the suggestions window.
-            self.updateSuggestedUrl(nil)
             // If the suggestionController is already in a cancelled state, this call does nothing and is therefore always safe to call.
-            suggestionsController?.cancelSuggestions()
+            suggestionsWindowController?.cancelSuggestions()
             // This suggestion has been skipped, don't skip the next one.
             skipNextSuggestion = false
         }
@@ -114,7 +117,9 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
     func controlTextDidEndEditing(_ obj: Notification) {
         /* If the suggestionController is already in a cancelled state, this call does nothing and is therefore always safe to call.
          */
-        suggestionsController?.cancelSuggestions()
+        if obj.userInfo?["NSTextMovement"] as? Int != 16 {
+            suggestionsWindowController?.cancelSuggestions()
+        }
     }
 
     /* As the delegate for the NSTextField, this class is given a chance to respond to the key binding commands interpreted by the input manager when the field editor calls -interpretKeyEvents:. This is where we forward some of the keyboard commands to the suggestion window to facilitate keyboard navigation. Also, this is where we can determine when the user deletes and where we can prevent AppKit's auto completion.
@@ -122,12 +127,12 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if commandSelector == #selector(NSResponder.moveUp(_:)) {
             // Move up in the suggested selections list
-            suggestionsController?.moveUp(textView)
+            suggestionsWindowController?.moveUp(textView)
             return true
         }
         if commandSelector == #selector(NSResponder.moveDown(_:)) {
             // Move down in the suggested selections list
-            suggestionsController?.moveDown(textView)
+            suggestionsWindowController?.moveDown(textView)
             return true
         }
         if commandSelector == #selector(NSResponder.deleteForward(_:)) || commandSelector == #selector(NSResponder.deleteBackward(_:)) {
@@ -143,8 +148,8 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
         }
         if commandSelector == #selector(NSResponder.complete(_:)) {
             // The user has pressed the key combination for auto completion. AppKit has a built in auto completion. By overriding this command we prevent AppKit's auto completion and can respond to the user's intention by showing or cancelling our custom suggestions window.
-            if suggestionsController != nil && suggestionsController!.window != nil && suggestionsController!.window!.isVisible {
-                suggestionsController?.cancelSuggestions()
+            if suggestionsWindowController != nil && suggestionsWindowController!.window != nil && suggestionsWindowController!.window!.isVisible {
+                suggestionsWindowController?.cancelSuggestions()
             } else {
                 updateSuggestions(from: control)
             }
@@ -173,8 +178,8 @@ extension SUGMainWindowController : NSToolbarDelegate {
             self.searchField = searchItem.searchField
             searchItem.searchField.sendsWholeSearchString = true
             searchItem.searchField.delegate = self
-            searchItem.searchField.target = self.contentViewController
-            searchItem.searchField.action = #selector(SUGMainWindowViewController.takeImage(fromSuggestedURL:))
+            searchItem.searchField.target = self
+            searchItem.searchField.action = #selector(SUGMainWindowController.takeImage(fromSuggestedURL:))
             return searchItem
         }
         return nil
