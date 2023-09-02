@@ -8,47 +8,47 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		218404722AA0ECC800A7CBF8 /* NSImage+SUGMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */; };
-		218404762AA0F99A00A7CBF8 /* SUGSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404752AA0F99A00A7CBF8 /* SUGSuggestionViewController.swift */; };
-		218404782AA0FC7C00A7CBF8 /* SUGSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404772AA0FC7C00A7CBF8 /* SUGSuggestionView.swift */; };
-		2184047A2AA1145000A7CBF8 /* SUGSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404792AA1145000A7CBF8 /* SUGSuggestion.swift */; };
-		2184047E2AA1206300A7CBF8 /* SUGMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2184047D2AA1206300A7CBF8 /* SUGMainWindowController.swift */; };
-		218404802AA1258700A7CBF8 /* SUGMainWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */; };
-		218404822AA125D900A7CBF8 /* SUGMainWindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218404812AA125D900A7CBF8 /* SUGMainWindowContentViewController.swift */; };
-		21E7837D2AA142A60027D003 /* SUGSuggestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E7837C2AA142A60027D003 /* SUGSuggestionGenerator.swift */; };
+		2108362B2AA3E774006B0411 /* SUGSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836292AA3E774006B0411 /* SUGSuggestion.swift */; };
+		2108362C2AA3E774006B0411 /* SUGSuggestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108362A2AA3E774006B0411 /* SUGSuggestionGenerator.swift */; };
+		210836322AA3E791006B0411 /* SUGMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108362E2AA3E791006B0411 /* SUGMainWindowController.swift */; };
+		210836332AA3E791006B0411 /* SUGCustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108362F2AA3E791006B0411 /* SUGCustomMenusAppDelegate.swift */; };
+		210836342AA3E791006B0411 /* SUGMainWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 210836302AA3E791006B0411 /* SUGMainWindowController.storyboard */; };
+		210836352AA3E791006B0411 /* SUGMainWindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836312AA3E791006B0411 /* SUGMainWindowContentViewController.swift */; };
+		210836392AA3E7AE006B0411 /* SUGSearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836372AA3E7AE006B0411 /* SUGSearchFieldCell.swift */; };
+		2108363A2AA3E7AE006B0411 /* NSSearchField+cellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836382AA3E7AE006B0411 /* NSSearchField+cellClass.swift */; };
+		210836412AA3E7D7006B0411 /* SUGSuggestionListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108363C2AA3E7D7006B0411 /* SUGSuggestionListContentView.swift */; };
+		210836422AA3E7D7006B0411 /* SUGSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108363D2AA3E7D7006B0411 /* SUGSuggestionViewController.swift */; };
+		210836432AA3E7D7006B0411 /* SUGSuggestionListWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108363E2AA3E7D7006B0411 /* SUGSuggestionListWindowController.swift */; };
+		210836442AA3E7D7006B0411 /* SUGSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108363F2AA3E7D7006B0411 /* SUGSuggestionView.swift */; };
+		210836452AA3E7D7006B0411 /* SUGSuggestionListWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836402AA3E7D7006B0411 /* SUGSuggestionListWindow.swift */; };
+		210836472AA3E83C006B0411 /* NSImage+SUGMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836462AA3E83C006B0411 /* NSImage+SUGMask.swift */; };
 		21E7837F2AA17C0F0027D003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21E7837E2AA17C0F0027D003 /* Assets.xcassets */; };
-		21E783812AA245F30027D003 /* NSSearchField+cellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E783802AA245F30027D003 /* NSSearchField+cellClass.swift */; };
-		256AC3DA0F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */; };
-		8724A6AD11AF3CE90057E785 /* SUGSuggestionListWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SUGSuggestionListWindow.swift */; };
-		87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */; };
-		87CD530E11A9AD0C00B510D3 /* SUGSuggestionListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD530D11A9AD0C00B510D3 /* SUGSuggestionListContentView.swift */; };
-		87CD531111A9AE5D00B510D3 /* SUGSuggestionListWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD531011A9AE5D00B510D3 /* SUGSuggestionListWindowController.swift */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		210836292AA3E774006B0411 /* SUGSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestion.swift; sourceTree = "<group>"; };
+		2108362A2AA3E774006B0411 /* SUGSuggestionGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionGenerator.swift; sourceTree = "<group>"; };
+		2108362E2AA3E791006B0411 /* SUGMainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGMainWindowController.swift; sourceTree = "<group>"; };
+		2108362F2AA3E791006B0411 /* SUGCustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGCustomMenusAppDelegate.swift; sourceTree = "<group>"; };
+		210836302AA3E791006B0411 /* SUGMainWindowController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SUGMainWindowController.storyboard; sourceTree = "<group>"; };
+		210836312AA3E791006B0411 /* SUGMainWindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGMainWindowContentViewController.swift; sourceTree = "<group>"; };
+		210836372AA3E7AE006B0411 /* SUGSearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSearchFieldCell.swift; sourceTree = "<group>"; };
+		210836382AA3E7AE006B0411 /* NSSearchField+cellClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSearchField+cellClass.swift"; sourceTree = "<group>"; };
+		2108363C2AA3E7D7006B0411 /* SUGSuggestionListContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListContentView.swift; sourceTree = "<group>"; };
+		2108363D2AA3E7D7006B0411 /* SUGSuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionViewController.swift; sourceTree = "<group>"; };
+		2108363E2AA3E7D7006B0411 /* SUGSuggestionListWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListWindowController.swift; sourceTree = "<group>"; };
+		2108363F2AA3E7D7006B0411 /* SUGSuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionView.swift; sourceTree = "<group>"; };
+		210836402AA3E7D7006B0411 /* SUGSuggestionListWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListWindow.swift; sourceTree = "<group>"; };
+		210836462AA3E83C006B0411 /* NSImage+SUGMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+SUGMask.swift"; sourceTree = "<group>"; };
 		2184044E2A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		218404512A9FD3D700A7CBF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+SUGMask.swift"; sourceTree = "<group>"; };
-		218404752AA0F99A00A7CBF8 /* SUGSuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGSuggestionViewController.swift; sourceTree = "<group>"; };
-		218404772AA0FC7C00A7CBF8 /* SUGSuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGSuggestionView.swift; sourceTree = "<group>"; };
-		218404792AA1145000A7CBF8 /* SUGSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGSuggestion.swift; sourceTree = "<group>"; };
-		2184047D2AA1206300A7CBF8 /* SUGMainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGMainWindowController.swift; sourceTree = "<group>"; };
-		2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SUGMainWindowController.storyboard; sourceTree = "<group>"; };
-		218404812AA125D900A7CBF8 /* SUGMainWindowContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGMainWindowContentViewController.swift; sourceTree = "<group>"; };
-		21E7837C2AA142A60027D003 /* SUGSuggestionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUGSuggestionGenerator.swift; sourceTree = "<group>"; };
 		21E7837E2AA17C0F0027D003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		21E783802AA245F30027D003 /* NSSearchField+cellClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSearchField+cellClass.swift"; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGCustomMenusAppDelegate.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		532273A015F92B3100F89E73 /* CustomMenus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CustomMenus.entitlements; sourceTree = "<group>"; };
-		8724A6AC11AF3CE90057E785 /* SUGSuggestionListWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListWindow.swift; sourceTree = "<group>"; };
-		87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSearchFieldCell.swift; sourceTree = "<group>"; };
-		87CD530D11A9AD0C00B510D3 /* SUGSuggestionListContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListContentView.swift; sourceTree = "<group>"; };
-		87CD531011A9AE5D00B510D3 /* SUGSuggestionListWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListWindowController.swift; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* CustomMenus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CustomMenus-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CustomMenus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomMenus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -65,17 +65,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* App Delegate and Main Window */ = {
-			isa = PBXGroup;
-			children = (
-				256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */,
-				2184047F2AA1258700A7CBF8 /* SUGMainWindowController.storyboard */,
-				2184047D2AA1206300A7CBF8 /* SUGMainWindowController.swift */,
-				218404812AA125D900A7CBF8 /* SUGMainWindowContentViewController.swift */,
-			);
-			name = "App Delegate and Main Window";
-			sourceTree = "<group>";
-		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,22 +90,46 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		210836262AA3D91F006B0411 /* Search Field */ = {
+		210836282AA3E774006B0411 /* Suggestions */ = {
 			isa = PBXGroup;
 			children = (
-				21E783802AA245F30027D003 /* NSSearchField+cellClass.swift */,
-				87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */,
+				210836292AA3E774006B0411 /* SUGSuggestion.swift */,
+				2108362A2AA3E774006B0411 /* SUGSuggestionGenerator.swift */,
 			);
-			name = "Search Field";
+			path = Suggestions;
 			sourceTree = "<group>";
 		};
-		21E7837B2AA1428E0027D003 /* Suggestions */ = {
+		2108362D2AA3E791006B0411 /* App Delegate and Main Window */ = {
 			isa = PBXGroup;
 			children = (
-				218404792AA1145000A7CBF8 /* SUGSuggestion.swift */,
-				21E7837C2AA142A60027D003 /* SUGSuggestionGenerator.swift */,
+				2108362E2AA3E791006B0411 /* SUGMainWindowController.swift */,
+				2108362F2AA3E791006B0411 /* SUGCustomMenusAppDelegate.swift */,
+				210836302AA3E791006B0411 /* SUGMainWindowController.storyboard */,
+				210836312AA3E791006B0411 /* SUGMainWindowContentViewController.swift */,
 			);
-			name = Suggestions;
+			path = "App Delegate and Main Window";
+			sourceTree = "<group>";
+		};
+		210836362AA3E7AE006B0411 /* Search Field */ = {
+			isa = PBXGroup;
+			children = (
+				210836372AA3E7AE006B0411 /* SUGSearchFieldCell.swift */,
+				210836382AA3E7AE006B0411 /* NSSearchField+cellClass.swift */,
+			);
+			path = "Search Field";
+			sourceTree = "<group>";
+		};
+		2108363B2AA3E7D7006B0411 /* Suggestion List Window */ = {
+			isa = PBXGroup;
+			children = (
+				210836462AA3E83C006B0411 /* NSImage+SUGMask.swift */,
+				2108363C2AA3E7D7006B0411 /* SUGSuggestionListContentView.swift */,
+				2108363D2AA3E7D7006B0411 /* SUGSuggestionViewController.swift */,
+				2108363E2AA3E7D7006B0411 /* SUGSuggestionListWindowController.swift */,
+				2108363F2AA3E7D7006B0411 /* SUGSuggestionView.swift */,
+				210836402AA3E7D7006B0411 /* SUGSuggestionListWindow.swift */,
+			);
+			path = "Suggestion List Window";
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomMenus */ = {
@@ -124,10 +137,10 @@
 			children = (
 				532273A015F92B3100F89E73 /* CustomMenus.entitlements */,
 				21E7837E2AA17C0F0027D003 /* Assets.xcassets */,
-				21E7837B2AA1428E0027D003 /* Suggestions */,
-				080E96DDFE201D6D7F000001 /* App Delegate and Main Window */,
-				210836262AA3D91F006B0411 /* Search Field */,
-				873492EB11B061A5007159B7 /* Suggestions List Window */,
+				210836282AA3E774006B0411 /* Suggestions */,
+				2108362D2AA3E791006B0411 /* App Delegate and Main Window */,
+				2108363B2AA3E7D7006B0411 /* Suggestion List Window */,
+				210836362AA3E7AE006B0411 /* Search Field */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -152,19 +165,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		873492EB11B061A5007159B7 /* Suggestions List Window */ = {
-			isa = PBXGroup;
-			children = (
-				87CD531011A9AE5D00B510D3 /* SUGSuggestionListWindowController.swift */,
-				87CD530D11A9AD0C00B510D3 /* SUGSuggestionListContentView.swift */,
-				8724A6AC11AF3CE90057E785 /* SUGSuggestionListWindow.swift */,
-				218404752AA0F99A00A7CBF8 /* SUGSuggestionViewController.swift */,
-				218404772AA0FC7C00A7CBF8 /* SUGSuggestionView.swift */,
-				218404712AA0ECC800A7CBF8 /* NSImage+SUGMask.swift */,
-			);
-			name = "Suggestions List Window";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				218404802AA1258700A7CBF8 /* SUGMainWindowController.storyboard in Resources */,
+				210836342AA3E791006B0411 /* SUGMainWindowController.storyboard in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				21E7837F2AA17C0F0027D003 /* Assets.xcassets in Resources */,
 			);
@@ -242,19 +242,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2184047E2AA1206300A7CBF8 /* SUGMainWindowController.swift in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift in Sources */,
-				87CD530E11A9AD0C00B510D3 /* SUGSuggestionListContentView.swift in Sources */,
-				87CD531111A9AE5D00B510D3 /* SUGSuggestionListWindowController.swift in Sources */,
-				218404822AA125D900A7CBF8 /* SUGMainWindowContentViewController.swift in Sources */,
-				218404782AA0FC7C00A7CBF8 /* SUGSuggestionView.swift in Sources */,
-				87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */,
-				21E783812AA245F30027D003 /* NSSearchField+cellClass.swift in Sources */,
-				2184047A2AA1145000A7CBF8 /* SUGSuggestion.swift in Sources */,
-				218404762AA0F99A00A7CBF8 /* SUGSuggestionViewController.swift in Sources */,
-				21E7837D2AA142A60027D003 /* SUGSuggestionGenerator.swift in Sources */,
-				8724A6AD11AF3CE90057E785 /* SUGSuggestionListWindow.swift in Sources */,
-				218404722AA0ECC800A7CBF8 /* NSImage+SUGMask.swift in Sources */,
+				210836332AA3E791006B0411 /* SUGCustomMenusAppDelegate.swift in Sources */,
+				2108362C2AA3E774006B0411 /* SUGSuggestionGenerator.swift in Sources */,
+				2108362B2AA3E774006B0411 /* SUGSuggestion.swift in Sources */,
+				210836442AA3E7D7006B0411 /* SUGSuggestionView.swift in Sources */,
+				210836322AA3E791006B0411 /* SUGMainWindowController.swift in Sources */,
+				2108363A2AA3E7AE006B0411 /* NSSearchField+cellClass.swift in Sources */,
+				210836392AA3E7AE006B0411 /* SUGSearchFieldCell.swift in Sources */,
+				210836452AA3E7D7006B0411 /* SUGSuggestionListWindow.swift in Sources */,
+				210836412AA3E7D7006B0411 /* SUGSuggestionListContentView.swift in Sources */,
+				210836432AA3E7D7006B0411 /* SUGSuggestionListWindowController.swift in Sources */,
+				210836472AA3E83C006B0411 /* NSImage+SUGMask.swift in Sources */,
+				210836422AA3E7D7006B0411 /* SUGSuggestionViewController.swift in Sources */,
+				210836352AA3E791006B0411 /* SUGMainWindowContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
