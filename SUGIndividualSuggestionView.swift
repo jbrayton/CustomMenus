@@ -55,6 +55,7 @@ class SUGIndividualSuggestionView : NSView {
 
         self.label = NSTextField(labelWithString: "")
         self.label.translatesAutoresizingMaskIntoConstraints = false
+        self.label.lineBreakMode = .byTruncatingTail
         self.backgroundView.addSubview(self.label)
         self.backgroundView.addConstraints([
             self.label.leadingAnchor.constraint(equalTo: self.imageView.trailingAnchor, constant: self.spaceBetweenLabelAndImage),
