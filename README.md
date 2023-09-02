@@ -31,7 +31,7 @@ When I needed to implement a suggestion menu in 2023, this code made that feasib
 * The sample app is not sandboxed because it needs access to `/System/Library/Desktop Pictures`.
 * `SUGSuggestionGenerator.swift` contains the code that determines the list of suggestions.
 * This supports light mode and dark mode.
-* VoiceOver works.
+* VoiceOver works, although there is [one issue](https://github.com/jbrayton/CustomMenus/issues/1) for which I have not found a solution. Suggestions welcome.
 * Pull requests are welcome.
 
 ## Thank you
