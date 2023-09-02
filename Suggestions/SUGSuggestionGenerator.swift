@@ -15,7 +15,7 @@ class SUGSuggestionGenerator {
     // If true and if there is at least one applicable suggestion, the first suggestion will be immediately selected.
     // The search field will be populated with the name of that suggestion. Pressing return will execute that suggestion.
     // If false, the user must select a suggestion with the arrow keys or mouse in order to execute a selection.
-    let automaticallySelectFirstSuggestion = true
+    let automaticallySelectFirstSuggestion = false
     
     private lazy var imageUrls: [URL] = {
         var result = [URL]()
