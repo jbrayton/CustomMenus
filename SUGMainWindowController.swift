@@ -16,7 +16,7 @@ class SUGMainWindowController : NSWindowController {
     private var skipNextSuggestion = false
     private var searchField: NSTextField?
 
-    private var suggestionsWindowController: SUGSuggestionsWindowController?
+    private var suggestionsWindowController: SUGSuggestionListWindowController?
 
     override func windowDidLoad() {
         let toolbar = NSToolbar(identifier: "SUGMainWindowController.toolbar")
@@ -28,7 +28,7 @@ class SUGMainWindowController : NSWindowController {
     /* This is the action method for when the user changes the suggestion selection. Note, this action is called continuously as the suggestion selection changes while being tracked and does not denote user committal of the suggestion. For suggestion committal, the text field's action method is used (see above). This method is wired up programatically in the -controlTextDidBeginEditing: method below.
      */
     @IBAction func update(withSelectedSuggestion sender: Any) {
-        if let entry = (sender as? SUGSuggestionsWindowController)?.selectedSuggestion() {
+        if let entry = (sender as? SUGSuggestionListWindowController)?.selectedSuggestion() {
             if let fieldEditor = self.window?.fieldEditor(false, for: searchField) {
                 updateFieldEditor(fieldEditor, withSuggestion: entry.name)
             }
@@ -41,9 +41,9 @@ class SUGMainWindowController : NSWindowController {
         if !self.skipNextSuggestion {
             if let suggestionsWindowController = self.suggestionsWindowController, self.suggestionsWindowController?.window?.isVisible == true {
                 let suggestion = suggestionsWindowController.selectedSuggestion()
-                (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: suggestion?.url)
+                (self.contentViewController as? SUGMainWindowContentViewController)?.setImageUrl(imageUrl: suggestion?.url)
             } else {
-                (self.contentViewController as? SUGMainWindowViewController)?.setImageUrl(imageUrl: nil)
+                (self.contentViewController as? SUGMainWindowContentViewController)?.setImageUrl(imageUrl: nil)
             }
             self.suggestionsWindowController?.cancelSuggestions()
         } else {
@@ -98,7 +98,7 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
         if !skipNextSuggestion {
             // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
             if suggestionsWindowController == nil {
-                suggestionsWindowController = SUGSuggestionsWindowController(automaticallySelectFirstSuggestion: self.searchSuggestionGenerator.automaticallySelectFirstSuggestion)
+                suggestionsWindowController = SUGSuggestionListWindowController(automaticallySelectFirstSuggestion: self.searchSuggestionGenerator.automaticallySelectFirstSuggestion)
                 suggestionsWindowController?.target = self
                 suggestionsWindowController?.action = #selector(SUGMainWindowController.update(withSelectedSuggestion:))
             }

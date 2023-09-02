@@ -9,6 +9,8 @@ import AppKit
 
 extension NSSearchField {
     
+    // I worry that this has the potential to conflict with an NSSearchField.cellClass method
+    // provided by the system.
     static public override var cellClass: AnyClass? {
         get {
             return SUGSearchFieldCell.self

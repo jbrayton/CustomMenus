@@ -41,7 +41,7 @@
  */
 import Cocoa
 
-class SUGSuggestionsContentView: NSView {
+class SUGSuggestionListContentView: NSView {
     
     let cornerRadius: CGFloat = 10.0
 
@@ -77,12 +77,20 @@ class SUGSuggestionsContentView: NSView {
         return true
     }
 
-    // MARK: -
     // MARK: Accessibility
-    /* This view contains the list of selections.  It should be exposed to accessibility, and should report itself with the role 'AXList'.  Because this is an NSView subclass, most of the basic accessibility behavior (accessibility parent, children, size, position, window, and more) is inherited from NSView.  Note that even the role description attribute will update accordingly and its behavior does not need to be overridden.  However, since the role AXList has a number of additional required attributes, we need to declare them and implement them.
+
+    /*
+        This view contains the list of selections.  It should be exposed to accessibility, and
+        should report itself with the role 'AXList'.  Because this is an NSView subclass, most
+        of the basic accessibility behavior (accessibility parent, children, size, position,
+        window, and more) is inherited from NSView.  Note that even the role description attribute
+        will update accordingly and its behavior does not need to be overridden.  However, since
+        the role AXList has a number of additional required attributes, we need to declare them
+        and implement them.
      */
-    /* Make sure we are reported by accessibility.  NSView's default return value is YES.
-     */
+
+    // Make sure we are reported by accessibility.  NSView's default return value is YES.
+
     override func accessibilityIsIgnored() -> Bool {
         return false
     }
@@ -99,11 +107,21 @@ class SUGSuggestionsContentView: NSView {
         return self.accessibilityChildren()
     }
     
+    override func accessibilityChildren() -> [Any]? {
+        var result = [Any]()
+        for child in self.subviews {
+            if let child = child as? SUGSuggestionView {
+                result.append(child)
+            }
+        }
+        return result
+    }
+
     override func accessibilitySelectedChildren() -> [Any]? {
         var selectedChildren = [AnyHashable]()
         if let accessibilityChildren = self.accessibilityChildren() {
             for element: Any in accessibilityChildren {
-                if let control = element as? SUGIndividualSuggestionView {
+                if let control = element as? SUGSuggestionView {
                     if control.highlighted {
                         selectedChildren.append(control)
                     }
@@ -111,16 +129,6 @@ class SUGSuggestionsContentView: NSView {
             }
         }
         return selectedChildren
-    }
-    
-    override func accessibilityChildren() -> [Any]? {
-        var result = [Any]()
-        for child in self.subviews {
-            if let child = child as? SUGIndividualSuggestionView {
-                result.append(child)
-            }
-        }
-        return result
     }
 
 }

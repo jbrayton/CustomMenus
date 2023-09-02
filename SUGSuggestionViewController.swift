@@ -7,7 +7,7 @@
 
 import AppKit
 
-class SUGIndividualSuggestionViewController : NSViewController {
+class SUGSuggestionViewController : NSViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -18,12 +18,12 @@ class SUGIndividualSuggestionViewController : NSViewController {
     }
     
     override func loadView() {
-        self.view = SUGIndividualSuggestionView()
+        self.view = SUGSuggestionView()
     }
     
     override var representedObject: Any? {
         didSet {
-            if let representedObject = self.representedObject as? SUGSuggestion, let view = self.view as? SUGIndividualSuggestionView {
+            if let representedObject = self.representedObject as? SUGSuggestion, let view = self.view as? SUGSuggestionView {
                 view.label.stringValue = representedObject.name
                 view.imageView.image = NSImage(named: representedObject.imageName)
             }

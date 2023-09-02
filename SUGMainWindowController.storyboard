@@ -31,10 +31,10 @@
             </objects>
             <point key="canvasLocation" x="-84" y="31"/>
         </scene>
-        <!--Main Window View Controller-->
+        <!--Main Window Content View Controller-->
         <scene sceneID="T26-t5-IAK">
             <objects>
-                <viewController id="abD-LQ-NGx" customClass="SUGMainWindowViewController" customModule="CustomMenus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="abD-LQ-NGx" customClass="SUGMainWindowContentViewController" customModule="CustomMenus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0A2-cS-xdH">
                         <rect key="frame" x="0.0" y="0.0" width="889" height="658"/>
                         <autoresizingMask key="autoresizingMask"/>

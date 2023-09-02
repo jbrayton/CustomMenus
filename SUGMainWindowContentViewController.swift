@@ -1,5 +1,5 @@
 //
-//  SUGMainWindowViewController.swift
+//  SUGMainWindowContentViewController.swift
 //  CustomMenus
 //
 //  Created by John Brayton on 8/31/23.
@@ -7,7 +7,7 @@
 
 import AppKit
 
-class SUGMainWindowViewController : NSViewController {
+class SUGMainWindowContentViewController : NSViewController {
     
     @IBOutlet var imageView: NSImageView!
 

@@ -7,7 +7,7 @@
 
 import AppKit
 
-class SUGIndividualSuggestionView : NSView {
+class SUGSuggestionView : NSView {
     
     let highlightSideMargin: CGFloat = 7.0
     let sideMargin: CGFloat = 6.0
