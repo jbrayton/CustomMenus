@@ -11,8 +11,8 @@ class SUGMainWindowController : NSWindowController {
     
     let searchSuggestionGenerator = SUGSuggestionGenerator()
     
-    /* Declare the skipNextSuggestion property in an anonymous category since it is a private property. See -controlTextDidChange: and -control:textView:doCommandBySelector: in this file for usage.
-     */
+    // This is set to true when the user _deletes_ characters from the search string. 
+    // The app does not show searches while deleting characters from the search string.
     private var skipNextSuggestion = false
     private var searchField: NSTextField?
 
@@ -25,8 +25,12 @@ class SUGMainWindowController : NSWindowController {
         self.window?.toolbar = toolbar
     }
 
-    /* This is the action method for when the user changes the suggestion selection. Note, this action is called continuously as the suggestion selection changes while being tracked and does not denote user committal of the suggestion. For suggestion committal, the text field's action method is used (see above). This method is wired up programatically in the -controlTextDidBeginEditing: method below.
-     */
+    // This is the action method for when the user changes the suggestion selection. Note, this
+    // action is called continuously as the suggestion selection changes while being tracked
+    // and does not denote user committal of the suggestion. For suggestion committal, the text
+    // field's action method is used (see above). This method is wired up programatically in
+    // the -controlTextDidBeginEditing: method below.
+
     @IBAction func update(withSelectedSuggestion sender: Any) {
         if let entry = (sender as? SUGSuggestionListWindowController)?.selectedSuggestion() {
             if let fieldEditor = self.window?.fieldEditor(false, for: searchField) {
@@ -35,8 +39,12 @@ class SUGMainWindowController : NSWindowController {
         }
     }
     
-    /* This method is invoked when the user presses return (or enter) on the search text field. We don't want to use the text from the search field as it is just the image filename without a path. Also, it may not be valid. Instead, use this user action to trigger setting the large image view in the main window to the currently suggested URL, if there is one.
-     */
+    // This method is invoked when the user presses return (or enter) on the search text field.
+    // We don’t want to use the text from the search field as it is just the image filename
+    // without a path. Also, it may not be valid. Instead, use this user action to trigger
+    // setting the large image view in the main window to the currently suggested URL, if
+    // there is one.
+    
     @IBAction func takeImage(fromSuggestedURL sender: Any) {
         if !self.skipNextSuggestion {
             if let suggestionsWindowController = self.suggestionsWindowController, self.suggestionsWindowController?.window?.isVisible == true {
@@ -51,16 +59,16 @@ class SUGMainWindowController : NSWindowController {
         }
     }
     
-    /* Update the field editor with a suggested string. The additional suggested characters are auto selected.
-     */
+    // Update the field editor with a suggested string. The additional suggested characters are auto selected.
+
     private func updateFieldEditor(_ fieldEditor: NSText?, withSuggestion suggestion: String?) {
         let selection = NSRange(location: fieldEditor?.selectedRange.location ?? 0, length: suggestion?.count ?? 0)
         fieldEditor?.string = suggestion ?? ""
         fieldEditor?.selectedRange = selection
     }
     
-    /* Determines the current list of suggestions, display the suggestions and update the field editor.
-     */
+    // Determines the current list of suggestions, display the suggestions and update the field editor.
+
     func updateSuggestions(from control: NSControl?) {
         if let fieldEditor = self.window?.fieldEditor(false, for: control) {
             // Only use the text up to the caret position
@@ -92,8 +100,9 @@ class SUGMainWindowController : NSWindowController {
 
 extension SUGMainWindowController : NSSearchFieldDelegate {
     
-    /* In interface builder, we set this class object as the delegate for the search text field. When the user starts editing the text field, this method is called. This is an opportune time to display the initial suggestions.
-     */
+    // When the user starts editing the text field, this method is called. This is an opportune time to
+    // display the initial suggestions.
+
     func controlTextDidBeginEditing(_ notification: Notification) {
         if !skipNextSuggestion {
             // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
@@ -106,8 +115,10 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
         }
     }
 
-    /* The field editor's text may have changed for a number of reasons. Generally, we should update the suggestions window with the new suggestions. However, in some cases (the user deletes characters) we cancel the suggestions window.
-     */
+    // The field editor's text may have changed for a number of reasons. Generally, we should update the
+    // suggestions window with the new suggestions. However, in some cases (the user deletes characters)
+    // we cancel the suggestions window.
+
     func controlTextDidChange(_ notification: Notification) {
         if !skipNextSuggestion {
             updateSuggestions(from: notification.object as? NSControl)
@@ -119,8 +130,13 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
         }
     }
 
-    /* The field editor has ended editing the text. This is not the same as the action from the NSTextField. In the MainMenu.xib, the search text field is setup to only send its action on return / enter. If the user tabs to or clicks on another control, text editing will end and this method is called. We don't consider this committal of the action. Instead, we realy on the text field's action (see -takeImageFromSuggestedURL: above) to commit the suggestion. However, since the action may not occur, we need to cancel the suggestions window here.
-     */
+    // The field editor has ended editing the text. This is not the same as the action from the NSTextField.
+    // In the MainMenu.xib, the search text field is setup to only send its action on return / enter. If
+    // the user tabs to or clicks on another control, text editing will end and this method is called. We
+    // don't consider this committal of the action. Instead, we realy on the text field's action (see
+    // -takeImageFromSuggestedURL: above) to commit the suggestion. However, since the action may not
+    // occur, we need to cancel the suggestions window here.
+
     func controlTextDidEndEditing(_ obj: Notification) {
         /* If the suggestionController is already in a cancelled state, this call does nothing and is therefore always safe to call.
          */
@@ -129,8 +145,11 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
         }
     }
 
-    /* As the delegate for the NSTextField, this class is given a chance to respond to the key binding commands interpreted by the input manager when the field editor calls -interpretKeyEvents:. This is where we forward some of the keyboard commands to the suggestion window to facilitate keyboard navigation. Also, this is where we can determine when the user deletes and where we can prevent AppKit's auto completion.
-     */
+    // As the delegate for the NSTextField, this class is given a chance to respond to the key binding commands
+    // interpreted by the input manager when the field editor calls -interpretKeyEvents:. This is where we
+    // forward some of the keyboard commands to the suggestion window to facilitate keyboard navigation.
+    // Also, this is where we can determine when the user deletes and where we can prevent AppKit's auto completion.
+
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         if commandSelector == #selector(NSResponder.moveUp(_:)) {
             // Move up in the suggested selections list
