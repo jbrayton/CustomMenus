@@ -19,7 +19,6 @@
 		21E7837F2AA17C0F0027D003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21E7837E2AA17C0F0027D003 /* Assets.xcassets */; };
 		21E783812AA245F30027D003 /* NSSearchField+cellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E783802AA245F30027D003 /* NSSearchField+cellClass.swift */; };
 		256AC3DA0F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */; };
-		2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2BD14C3F12D64C0100C2A872 /* ReadMe.txt */; };
 		8724A6AD11AF3CE90057E785 /* SUGSuggestionListWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A6AC11AF3CE90057E785 /* SUGSuggestionListWindow.swift */; };
 		87A62F6111AB5081003BFB8D /* SUGSearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */; };
 		87CD530E11A9AD0C00B510D3 /* SUGSuggestionListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD530D11A9AD0C00B510D3 /* SUGSuggestionListContentView.swift */; };
@@ -45,7 +44,6 @@
 		256AC3D90F4B6AC300CF3369 /* SUGCustomMenusAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGCustomMenusAppDelegate.swift; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		2BD14C3F12D64C0100C2A872 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		532273A015F92B3100F89E73 /* CustomMenus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CustomMenus.entitlements; sourceTree = "<group>"; };
 		8724A6AC11AF3CE90057E785 /* SUGSuggestionListWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListWindow.swift; sourceTree = "<group>"; };
 		87A62F6011AB5081003BFB8D /* SUGSearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSearchFieldCell.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 			children = (
 				532273A015F92B3100F89E73 /* CustomMenus.entitlements */,
 				21E7837E2AA17C0F0027D003 /* Assets.xcassets */,
-				2BD14C3F12D64C0100C2A872 /* ReadMe.txt */,
 				21E7837B2AA1428E0027D003 /* Suggestions */,
 				080E96DDFE201D6D7F000001 /* App Delegate and Main Window */,
 				210836262AA3D91F006B0411 /* Search Field */,
@@ -234,7 +231,6 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				218404802AA1258700A7CBF8 /* SUGMainWindowController.storyboard in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				2BD14C4012D64C0100C2A872 /* ReadMe.txt in Resources */,
 				21E7837F2AA17C0F0027D003 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
