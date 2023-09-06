@@ -31,6 +31,7 @@ When I needed to implement a suggestion menu in 2023, this code made that feasib
 * The sample app is not sandboxed because it needs access to `/System/Library/Desktop Pictures`.
 * `SUGSuggestionGenerator.swift` contains the code that determines the list of suggestions.
 * This supports light mode and dark mode.
+* This sample app shows and updates the suggestion window immediately after a key is pressed in the search field. In my own app I wait a short amount of time (0.2 milliseconds for now) to let the user continue typing if they have not paused. The benefits of waiting are that the menu is not just flashing while the user is typing, and that the processor is not wasting cycles updating menu contents. The downside is it makes the suggestion menu appear slow to update.
 * VoiceOver works, although there is [one issue](https://github.com/jbrayton/CustomMenus/issues/1) for which I have not found a solution. Suggestions welcome.
 * Pull requests are welcome.
 
