@@ -11,9 +11,6 @@ class SUGMainWindowController : NSWindowController {
     
     let searchSuggestionGenerator = SUGSuggestionGenerator()
     
-    // This is set to true when the user _deletes_ characters from the search string. 
-    // The app does not show searches while deleting characters from the search string.
-    var skipNextSuggestion = false
     var searchField: NSTextField?
 
     var suggestionsWindowController: SUGSuggestionListWindowController?
@@ -46,17 +43,13 @@ class SUGMainWindowController : NSWindowController {
     // there is one.
     
     @IBAction func takeImage(fromSuggestedURL sender: Any) {
-        if !self.skipNextSuggestion {
-            if let suggestionsWindowController = self.suggestionsWindowController, self.suggestionsWindowController?.window?.isVisible == true {
-                let suggestion = suggestionsWindowController.selectedSuggestion()
-                (self.contentViewController as? SUGMainWindowContentViewController)?.setImageUrl(imageUrl: suggestion?.url)
-            } else {
-                (self.contentViewController as? SUGMainWindowContentViewController)?.setImageUrl(imageUrl: nil)
-            }
-            self.suggestionsWindowController?.cancelSuggestions()
+        if let suggestionsWindowController = self.suggestionsWindowController, self.suggestionsWindowController?.window?.isVisible == true {
+            let suggestion = suggestionsWindowController.selectedSuggestion()
+            (self.contentViewController as? SUGMainWindowContentViewController)?.setImageUrl(imageUrl: suggestion?.url)
         } else {
-            self.skipNextSuggestion = false
+            (self.contentViewController as? SUGMainWindowContentViewController)?.setImageUrl(imageUrl: nil)
         }
+        self.suggestionsWindowController?.cancelSuggestions()
     }
     
     // Update the field editor with a suggested string. The additional suggested characters are auto selected.

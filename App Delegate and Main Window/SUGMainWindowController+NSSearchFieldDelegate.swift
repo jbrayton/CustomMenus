@@ -13,30 +13,20 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
     // display the initial suggestions.
 
     func controlTextDidBeginEditing(_ notification: Notification) {
-        if !skipNextSuggestion {
-            // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
-            if suggestionsWindowController == nil {
-                suggestionsWindowController = SUGSuggestionListWindowController(automaticallySelectFirstSuggestion: self.searchSuggestionGenerator.automaticallySelectFirstSuggestion)
-                suggestionsWindowController?.target = self
-                suggestionsWindowController?.action = #selector(SUGMainWindowController.update(withSelectedSuggestion:))
-            }
-            updateSuggestions(from: notification.object as? NSControl)
+        // We keep the suggestionsController around, but lazely allocate it the first time it is needed.
+        if suggestionsWindowController == nil {
+            suggestionsWindowController = SUGSuggestionListWindowController(automaticallySelectFirstSuggestion: self.searchSuggestionGenerator.automaticallySelectFirstSuggestion)
+            suggestionsWindowController?.target = self
+            suggestionsWindowController?.action = #selector(SUGMainWindowController.update(withSelectedSuggestion:))
         }
+        updateSuggestions(from: notification.object as? NSControl)
     }
 
     // The field editor's text may have changed for a number of reasons. Generally, we should update the
-    // suggestions window with the new suggestions. However, in some cases (the user deletes characters)
-    // we cancel the suggestions window.
+    // suggestions window with the new suggestions.
 
     func controlTextDidChange(_ notification: Notification) {
-        if !skipNextSuggestion {
-            updateSuggestions(from: notification.object as? NSControl)
-        } else {
-            // If the suggestionController is already in a cancelled state, this call does nothing and is therefore always safe to call.
-            suggestionsWindowController?.cancelSuggestions()
-            // This suggestion has been skipped, don't skip the next one.
-            skipNextSuggestion = false
-        }
+        updateSuggestions(from: notification.object as? NSControl)
     }
 
     // The field editor has ended editing the text. This is not the same as the action from the NSTextField.
@@ -69,17 +59,6 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
             // Move down in the suggested selections list
             suggestionsWindowController?.moveDown(textView)
             return true
-        }
-        if commandSelector == #selector(NSResponder.deleteForward(_:)) || commandSelector == #selector(NSResponder.deleteBackward(_:)) {
-            /* The user is deleting the highlighted portion of the suggestion or more. Return NO so that the field editor performs the deletion. The field editor will then call -controlTextDidChange:. We don't want to provide a new set of suggestions as that will put back the characters the user just deleted. Instead, set skipNextSuggestion to YES which will cause -controlTextDidChange: to cancel the suggestions window. (see -controlTextDidChange: above)
-             */
-            let insertionRange = textView.selectedRanges[0].rangeValue
-            if commandSelector == #selector(NSResponder.deleteBackward(_:)) {
-                skipNextSuggestion = (insertionRange.location != 0 || insertionRange.length > 0)
-            } else {
-                skipNextSuggestion = (insertionRange.location != textView.string.count || insertionRange.length > 0)
-            }
-            return false
         }
         if commandSelector == #selector(NSResponder.complete(_:)) {
             // The user has pressed the key combination for auto completion. AppKit has a built in auto completion. By overriding this command we prevent AppKit's auto completion and can respond to the user's intention by showing or cancelling our custom suggestions window.
