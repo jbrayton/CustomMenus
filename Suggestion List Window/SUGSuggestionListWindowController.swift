@@ -104,13 +104,17 @@ class SUGSuggestionListWindowController: NSWindowController {
         guard let suggestionWindow = window, let parentTextField, let parentWindow = parentTextField.window, let parentSuperview = parentTextField.superview else {
             return
         }
+        
+        // Make the menu extend 5 pixels out to the left and right of the search box. This
+        // makes the menu item icons align vertically with the search icon.
+        let horizontalNegativeInset: CGFloat = 5.0
         let parentFrame: NSRect = parentTextField.frame
         var frame: NSRect = suggestionWindow.frame
-        frame.size.width = parentFrame.size.width
-        
+        frame.size.width = parentFrame.size.width + (2 * horizontalNegativeInset)
+
         // Place the suggestion window just underneath the text field and make it the same width as the text field.
         var location = parentSuperview.convert(parentFrame.origin, to: nil)
-        location = parentWindow.convertToScreen(NSRect(x: location.x, y: location.y - parentTextField.frame.size.height, width: 0, height: 0)).origin
+        location = parentWindow.convertToScreen(NSRect(x: location.x - horizontalNegativeInset, y: location.y - parentTextField.frame.size.height, width: 0, height: 0)).origin
         location.y -= 2.0
         
         // Nudge the suggestion list window down so that it does not overlap the parent view.
