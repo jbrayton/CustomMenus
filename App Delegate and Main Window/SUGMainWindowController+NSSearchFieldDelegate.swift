@@ -60,8 +60,11 @@ extension SUGMainWindowController : NSSearchFieldDelegate {
             suggestionsWindowController?.moveDown(textView)
             return true
         }
+        
+        // This is "autocomplete" functionality, invoked when the user presses option-escaped.
+        // By overriding this command we prevent AppKit's auto completion and can respond to
+        // the user's intention by showing or cancelling our custom suggestions window.
         if commandSelector == #selector(NSResponder.complete(_:)) {
-            // The user has pressed the key combination for auto completion. AppKit has a built in auto completion. By overriding this command we prevent AppKit's auto completion and can respond to the user's intention by showing or cancelling our custom suggestions window.
             if suggestionsWindowController != nil && suggestionsWindowController!.window != nil && suggestionsWindowController!.window!.isVisible {
                 suggestionsWindowController?.cancelSuggestions()
             } else {
