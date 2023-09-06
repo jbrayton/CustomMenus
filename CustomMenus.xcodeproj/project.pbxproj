@@ -22,6 +22,9 @@
 		210836442AA3E7D7006B0411 /* SUGSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108363F2AA3E7D7006B0411 /* SUGSuggestionView.swift */; };
 		210836452AA3E7D7006B0411 /* SUGSuggestionListWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836402AA3E7D7006B0411 /* SUGSuggestionListWindow.swift */; };
 		210836472AA3E83C006B0411 /* NSImage+SUGMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210836462AA3E83C006B0411 /* NSImage+SUGMask.swift */; };
+		214C5DA72AA8075900620EDD /* SUGMainWindowController+NSSearchFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C5DA62AA8075900620EDD /* SUGMainWindowController+NSSearchFieldDelegate.swift */; };
+		214C5DA92AA8079A00620EDD /* SUGMainWindowController+NSToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C5DA82AA8079A00620EDD /* SUGMainWindowController+NSToolbarDelegate.swift */; };
+		214C5DAB2AA807C600620EDD /* NSToolbarItemIdentifier+SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C5DAA2AA807C600620EDD /* NSToolbarItemIdentifier+SearchItem.swift */; };
 		21E7837F2AA17C0F0027D003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21E7837E2AA17C0F0027D003 /* Assets.xcassets */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -43,6 +46,9 @@
 		2108363F2AA3E7D7006B0411 /* SUGSuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionView.swift; sourceTree = "<group>"; };
 		210836402AA3E7D7006B0411 /* SUGSuggestionListWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SUGSuggestionListWindow.swift; sourceTree = "<group>"; };
 		210836462AA3E83C006B0411 /* NSImage+SUGMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+SUGMask.swift"; sourceTree = "<group>"; };
+		214C5DA62AA8075900620EDD /* SUGMainWindowController+NSSearchFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SUGMainWindowController+NSSearchFieldDelegate.swift"; sourceTree = "<group>"; };
+		214C5DA82AA8079A00620EDD /* SUGMainWindowController+NSToolbarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SUGMainWindowController+NSToolbarDelegate.swift"; sourceTree = "<group>"; };
+		214C5DAA2AA807C600620EDD /* NSToolbarItemIdentifier+SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSToolbarItemIdentifier+SearchItem.swift"; sourceTree = "<group>"; };
 		2184044E2A9FD3D400A7CBF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		218404512A9FD3D700A7CBF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21E7837E2AA17C0F0027D003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,10 +108,13 @@
 		2108362D2AA3E791006B0411 /* App Delegate and Main Window */ = {
 			isa = PBXGroup;
 			children = (
-				2108362E2AA3E791006B0411 /* SUGMainWindowController.swift */,
+				214C5DAA2AA807C600620EDD /* NSToolbarItemIdentifier+SearchItem.swift */,
 				2108362F2AA3E791006B0411 /* SUGCustomMenusAppDelegate.swift */,
-				210836302AA3E791006B0411 /* SUGMainWindowController.storyboard */,
 				210836312AA3E791006B0411 /* SUGMainWindowContentViewController.swift */,
+				210836302AA3E791006B0411 /* SUGMainWindowController.storyboard */,
+				2108362E2AA3E791006B0411 /* SUGMainWindowController.swift */,
+				214C5DA62AA8075900620EDD /* SUGMainWindowController+NSSearchFieldDelegate.swift */,
+				214C5DA82AA8079A00620EDD /* SUGMainWindowController+NSToolbarDelegate.swift */,
 			);
 			path = "App Delegate and Main Window";
 			sourceTree = "<group>";
@@ -249,6 +258,9 @@
 				210836322AA3E791006B0411 /* SUGMainWindowController.swift in Sources */,
 				2108363A2AA3E7AE006B0411 /* NSSearchField+cellClass.swift in Sources */,
 				210836392AA3E7AE006B0411 /* SUGSearchFieldCell.swift in Sources */,
+				214C5DA72AA8075900620EDD /* SUGMainWindowController+NSSearchFieldDelegate.swift in Sources */,
+				214C5DA92AA8079A00620EDD /* SUGMainWindowController+NSToolbarDelegate.swift in Sources */,
+				214C5DAB2AA807C600620EDD /* NSToolbarItemIdentifier+SearchItem.swift in Sources */,
 				210836452AA3E7D7006B0411 /* SUGSuggestionListWindow.swift in Sources */,
 				210836412AA3E7D7006B0411 /* SUGSuggestionListContentView.swift in Sources */,
 				210836432AA3E7D7006B0411 /* SUGSuggestionListWindowController.swift in Sources */,
