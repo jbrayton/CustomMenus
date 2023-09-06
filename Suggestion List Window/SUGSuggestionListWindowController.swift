@@ -356,14 +356,16 @@ class SUGSuggestionListWindowController: NSWindowController {
     override func moveUp(_ sender: Any?) {
         let selectedView: NSView? = self.selectedView
         var previousView: NSView? = nil
+        var viewWasSelected = false
         for viewController: NSViewController in viewControllers {
             let view: NSView? = viewController.view
             if view == selectedView {
+                viewWasSelected = true
                 break
             }
             previousView = view
         }
-        if previousView != nil {
+        if viewWasSelected {
             userSetSelectedView(previousView)
         }
     }
