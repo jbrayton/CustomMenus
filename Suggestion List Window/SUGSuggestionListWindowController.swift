@@ -163,7 +163,6 @@ class SUGSuggestionListWindowController: NSWindowController {
                     if hitView != parentTextField && ((fieldEditor != nil) && hitView != fieldEditor) {
                         // Since the click is not in the parent text field, return nil, so the parent window 
                         // does not try to process it, and cancel the suggestion window.
-                        event = nil
                         self.cancelSuggestions()
                     }
                 } else {
@@ -339,6 +338,27 @@ class SUGSuggestionListWindowController: NSWindowController {
         parentTextField?.abortEditing()
         parentTextField?.sendAction(parentTextField?.action, to: parentTextField?.target)
         cancelSuggestions()
+    }
+
+    override func mouseDragged(with event: NSEvent) {
+        super.mouseDragged(with: event)
+        if let contentView = self.window?.contentView as? SUGSuggestionListContentView {
+            let viewPoint = contentView.convert(event.locationInWindow, from: contentView)
+            if viewPoint.x >= contentView.bounds.origin.x && viewPoint.x <= contentView.bounds.origin.x + contentView.bounds.size.width {
+                let subviews = contentView.subviews
+                let y = contentView.frame.size.height - viewPoint.y
+                for subview in subviews {
+                    let frame = subview.frame
+                    if let subview = subview as? SUGSuggestionView {
+                        if frame.origin.y <= y && frame.origin.y + frame.size.height >= y {
+                            userSetSelectedView(subview)
+                            return
+                        }
+                    }
+                }
+            }
+            userSetSelectedView(nil)
+        }
     }
 
     // MARK: Keyboard Tracking
