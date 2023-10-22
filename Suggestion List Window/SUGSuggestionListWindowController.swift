@@ -144,7 +144,7 @@ class SUGSuggestionListWindowController: NSWindowController {
         // application. We use another technique below to catch clicks in other application windows.
         localMouseDownEventMonitor = NSEvent.addLocalMonitorForEvents(matching: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown, NSEvent.EventTypeMask.otherMouseDown], handler: {(_ event: NSEvent) -> NSEvent? in
             // If the mouse event is in the suggestion window, then there is nothing to do.
-            var event: NSEvent! = event
+            let event: NSEvent! = event
             if event.window != suggestionWindow {
                 if event.window == parentWindow {
 
