@@ -142,7 +142,7 @@ class SUGSuggestionListWindowController: NSWindowController {
         // Setup auto cancellation if the user clicks outside the suggestion window and parent text field. 
         // Note: this is a local event monitor and will only catch clicks in windows that belong to this
         // application. We use another technique below to catch clicks in other application windows.
-        localMouseDownEventMonitor = NSEvent.addLocalMonitorForEvents(matching: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown, NSEvent.EventTypeMask.otherMouseDown], handler: {(_ event: NSEvent) -> NSEvent? in
+        localMouseDownEventMonitor = NSEvent.addLocalMonitorForEvents(matching: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown, NSEvent.EventTypeMask.otherMouseDown], handler: { [weak self] (_ event: NSEvent) -> NSEvent? in
             // If the mouse event is in the suggestion window, then there is nothing to do.
             let event: NSEvent! = event
             if event.window != suggestionWindow {
@@ -163,12 +163,12 @@ class SUGSuggestionListWindowController: NSWindowController {
                     if hitView != parentTextField && ((fieldEditor != nil) && hitView != fieldEditor) {
                         // Since the click is not in the parent text field, return nil, so the parent window 
                         // does not try to process it, and cancel the suggestion window.
-                        self.cancelSuggestions()
+                        self?.cancelSuggestions()
                     }
                 } else {
                     // Not in the suggestion window, and not in the parent window. This must be another window 
                     // or palette for this application.
-                    self.cancelSuggestions()
+                    self?.cancelSuggestions()
                 }
             }
             return event
