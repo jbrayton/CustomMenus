@@ -28,7 +28,7 @@ When I needed to implement a suggestion menu in 2023, this code made that feasib
 
 ## Notes
 
-* The sample app is not sandboxed because it needs access to `/System/Library/Desktop Pictures`.
+* The sample app is not sandboxed because it needs access to `/System/Library/Desktop Pictures`. The menu generation code itself works in the sandbox without additional entitlements.
 * `SUGSuggestionGenerator.swift` contains the code that determines the list of suggestions.
 * This supports light mode and dark mode.
 * This sample app shows and updates the suggestion window immediately after a key is pressed in the search field. In my own app I wait a short amount of time (0.2 milliseconds for now) to let the user continue typing if they have not paused. The benefits of waiting are that the menu is not just flashing while the user is typing, and that the processor is not wasting cycles updating menu contents. The downside is it makes the suggestion menu appear slow to update.
@@ -41,4 +41,4 @@ I could not have done this work myself. Thank you to:
 
 * Apple for the original [CustomMenus sample code](https://developer.apple.com/library/archive/samplecode/CustomMenus/Introduction/Intro.html) sample code.
 * Doug Stein for [his work to modernize this code in 2018](https://github.com/dougzilla32/CustomMenus).
-* _Lots_ of individuals who helped me. I want to seek their permission before naming them here. I will do that before telling anyone of this repository.
+* Lucas Derraugh, Daniel Jalkut, Gui Rambo, Christian Tietze, and Nate Weaver for helping me with this in the AppKit Abusers Slack.
