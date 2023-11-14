@@ -39,6 +39,6 @@ When I needed to implement a suggestion menu in 2023, this code made that feasib
 
 I could not have done this work myself. Thank you to:
 
+* [Doug Stein](https://github.com/dougzilla32) for [his work to modernize this code in 2018](https://github.com/dougzilla32/CustomMenus).
+* [Lucas Derraugh](https://derraugh.com/), [Daniel Jalkut](https://redsweater.com/), [Gui Rambo](https://www.rambo.codes/), [Christian Tietze](https://christiantietze.de/), and [Nate Weaver](https://wevah.com/) for helping me with this in the AppKit Abusers Slack.
 * Apple for the original [CustomMenus sample code](https://developer.apple.com/library/archive/samplecode/CustomMenus/Introduction/Intro.html) sample code.
-* Doug Stein for [his work to modernize this code in 2018](https://github.com/dougzilla32/CustomMenus).
-* Lucas Derraugh, Daniel Jalkut, Gui Rambo, Christian Tietze, and Nate Weaver for helping me with this in the AppKit Abusers Slack.
