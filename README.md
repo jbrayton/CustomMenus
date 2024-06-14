@@ -1,3 +1,7 @@
+# Update June 13 2024
+
+I have not experimented with this yet, but it looks like the [Text entry suggestions](https://developer.apple.com/wwdc24/10124?time=1047) in Sequoia alleviate the need for this. If you can target Sequoia I recommend checking that out.
+
 # CustomMenus
 
 Many apps with search functionality have suggestion menus, letting an app provide specific suggestions as the user starts typing into a search field.
