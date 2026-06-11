@@ -2,6 +2,8 @@
 
 [Text entry suggestions](https://developer.apple.com/wwdc24/10124?time=1047) in Sequoia alleviate the need for this code. It has worked well up until now, but I have not updated to support touch screen features added for Sidecar in macOS 27. Feel free to use and fork the code, but I am archiving this repository.
 
+To use text entry suggestions, set a `suggestionsDelegate` on the `NSTextField` that implements `NSTextSuggestionsDelegate`.
+
 # CustomMenus
 
 Many apps with search functionality have suggestion menus, letting an app provide specific suggestions as the user starts typing into a search field.
