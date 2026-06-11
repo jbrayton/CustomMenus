@@ -1,6 +1,6 @@
-# Update June 13 2024
+# Update June 11 2026
 
-I have not experimented with this yet, but it looks like the [Text entry suggestions](https://developer.apple.com/wwdc24/10124?time=1047) in Sequoia alleviate the need for this. If you can target Sequoia I recommend checking that out.
+[Text entry suggestions](https://developer.apple.com/wwdc24/10124?time=1047) in Sequoia alleviate the need for this code. It has worked well up until now, but I have not updated to support touch screen features added for Sidecar in macOS 27. Feel free to use and fork the code, but I am archiving this repository.
 
 # CustomMenus
 
